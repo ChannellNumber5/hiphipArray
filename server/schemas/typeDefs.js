@@ -43,17 +43,30 @@ const typeDefs = gql`
     addUser(
       username: String!, 
       email: String!,
-      description: String,
+      description: String!,
       password: String!): Auth
 
-    updateUser(firstName: String, lastName: String, email: String, password: String): User
+    updateUser(username: String!, 
+      email: String!,
+      description: String!, 
+      password: String!): Auth
+
     login(email: String!, password: String!): Auth
     addSkill(skillName: String! description: String!): Skill 
     removeSkill(skillId: ID!): Skill
-    updateSkills(name: String! description: String!):Skill
+
+    updateSkills(
+      _id: ID!, 
+      skillName: String!, 
+      description: String!): Skill
+
     addProject(projectName: String! description: String!): Project
     removeProject(projectId: ID!): Project
-    updateProject:(projectName: String! description: String!) Project
+    
+    updateProject:(
+      _id: ID!, 
+      projectName: String!, 
+      description: String!): Project
   }
 `;
 
