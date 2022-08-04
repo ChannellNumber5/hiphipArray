@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 const { User } = require('./User');
 
 const skillSchema = new Schema({
-    name: {
+    skillName: {
         type: String,
         required: true,
         trim: true
