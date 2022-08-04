@@ -1,20 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Welcome() {
-  const handleSignUp = () => {};
-  // const handleSignUp = () => {handlePageChange("Sign up");};
-  const handleLogin = () => {};
-  // const handleLogin = () => handlePageChange("Login");
   return (
     <div>
       <h1>Welcome Page</h1>
       <p>
-        <button type="button" onClick={handleSignUp}>
-          Sign Up
-        </button>
-        <button type="button" onClick={handleLogin}>
-          Login
-        </button>
+        <Link to="/signup">
+          <button>Sign Up</button>
+        </Link>
+        <Link to="/login">
+          <button>Log in</button>
+        </Link>
       </p>
     </div>
   );
