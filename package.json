@@ -2,17 +2,35 @@
   "name": "array",
   "version": "1.0.0",
   "description": "",
-  "main": "server/server.js",
+  "main": "index.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
     "start": "node server --ignore client",
     "develop": "concurrently \"cd server && npm run start\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
     "seed": "cd server && npm run seed",
     "build": "cd client && npm run build"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChannellNumber5/hiphipArray.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChannellNumber5/hiphipArray/issues"
+  },
+  "homepage": "https://github.com/ChannellNumber5/hiphipArray",
+  "dependencies": {
+    "apollo-server-express": "^3.10.0",
+    "bcrypt": "^5.0.1",
+    "express": "^4.18.1",
+    "graphql": "^16.5.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.5.0",
+    "nodemon": "^2.0.19"
+  },
   "devDependencies": {
     "concurrently": "^5.1.0"
   }
