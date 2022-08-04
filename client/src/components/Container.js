@@ -1,10 +1,18 @@
 import React, { useState } from "react";
 import NavTabs from "./NavTabs";
-import Welcome from "./pages/Welcome";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Signup from "./pages/SignUp";
+
+// Menu Options
+import Welcome from "./pages/Welcome";
+import Profile from "./pages/myProfile";
+import myProjects from "./pages/myProjects";
+import findProjects from "./pages/findProjects";
+import Arrayers from "./pages/findArrayers";
+import Requests from "./pages/requests";
+
 
 export default function Container() {
   const [currentPage, setCurrentPage] = useState("Welcome");
@@ -14,11 +22,20 @@ export default function Container() {
     if (currentPage === "Welcome") {
       return <Welcome />;
     }
-    if (currentPage === "Login") {
-      return <Login />;
+    if (currentPage === "myProfile") {
+      return <Profile />;
     }
-    if (currentPage === "SignUp") {
-      return <SignUp />;
+    if (currentPage === "myProjects") {
+      return <myProjects />;
+    }
+    if (currentPage === "findProjects") {
+      return <findProjects />;
+    }
+    if (currentPage === "findArrayers") {
+      return <Arrayers />;
+    }
+    if (currentPage === "Requests") {
+      return <Requests />;
     }
     return <Welcome />;
   };
@@ -36,6 +53,7 @@ export default function Container() {
         />
         {/* Here we are calling the renderPage method which will return a component  */}
         {/* {renderPage()} */}
+        {renderPage()}
         <div className="container">
           {/* Wrap Route elements in a Routes component */}
           <Routes>
