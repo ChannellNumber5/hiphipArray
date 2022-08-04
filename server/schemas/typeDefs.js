@@ -5,22 +5,23 @@ const typeDefs = gql`
     _id: ID
     username: String 
     email: String
+    description: String
     skills: [Skill]!
-    Projects: [Project]!
+    projects: [Project]!
   }
 
   type Skill {
     _id: ID
-    name: String
+    skillName: String
     description: String
     users: [User]
   }
 
   type Project {
     _id: ID
-    name: String
+    projectName: String
     description: String
-    
+    organizer: User
   }
 
   type Auth {
@@ -31,17 +32,28 @@ const typeDefs = gql`
   type Query {
     users: [User]
     user: (username: String!): User
-    Skills(name: String): [Skill]
+    skills(skillName: String): [Skill]
     skill(skillId: ID!): Skill
-    Projects(name: String) : [Project]
-    Project(ProjectId: ID!): Project
+    projects(projectName: String) : [Project]
+    project(projectId: ID!): Project
     me: User
   }
 
   type Mutation {
-    addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
+    addUser(
+      username: String!, 
+      email: String!,
+      description: String,
+      password: String!): Auth
+
     updateUser(firstName: String, lastName: String, email: String, password: String): User
     login(email: String!, password: String!): Auth
+    addSkill(name: String! description: String!): Skill 
+    removeSkill(skillId: ID!): Skill
+    updateSkills(name: String! description: String!):Skill
+    addProject(projectName: String! description: String!): Project
+    removeProject(ProjectId: ID!): Project
+    updateProject:(projectName: String! description: String!) Project
   }
 `;
 
