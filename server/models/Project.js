@@ -6,7 +6,7 @@ const { Skill } = require('./Skill');
 const { User } = require('./User');
 
 const projectSchema = new Schema({
-    name: {
+    projectName: {
         type: String,
         required: true,
         trim: true
