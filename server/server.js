@@ -1,6 +1,7 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
+
 const { authMiddleware } = require('./utils/auth');
 
 const { typeDefs, resolvers } = require('./schemas');
@@ -9,6 +10,7 @@ const db = require('./config/connection');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
+
 
 //creates new apollo server instance using the defined typeDefs and resolvers and authentication middleware, so that client can make queries to database.
 const server = new ApolloServer({
@@ -40,4 +42,6 @@ const startApolloServer = async (typeDefs, resolvers) => {
     })
 };
 
+
 startApolloServer(typeDefs, resolvers);
+

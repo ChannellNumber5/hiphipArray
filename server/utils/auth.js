@@ -1,3 +1,4 @@
+
 const jdubt = require('jsonwebtoken');
 
 const secret = 'supersecretinfinitysecretttt';
@@ -29,3 +30,4 @@ module.exports = {
         return jdubt.sign ({ data: payload }, secret, { expiresIn: expiration });
     },
 };
+

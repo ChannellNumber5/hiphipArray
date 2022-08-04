@@ -1,10 +1,15 @@
 {
-  "name": "hiphiparray",
+  "name": "array",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server --ignore client",
+    "develop": "concurrently \"cd server && npm run start\" \"cd client && npm start\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "seed": "cd server && npm run seed",
+    "build": "cd client && npm run build"
   },
   "repository": {
     "type": "git",
@@ -25,5 +30,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.5.0",
     "nodemon": "^2.0.19"
+  },
+  "devDependencies": {
+    "concurrently": "^5.1.0"
   }
 }
