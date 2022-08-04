@@ -27,8 +27,18 @@ const userSchema = new Schema({
         required: true,
         trim: true
     },
-    skills:[Skill.schema],
-    projects:[Project.schema]
+    skills:[
+        {
+        type: Schema.Types.ObjectId,
+        ref: 'Skill'
+        },
+    ],
+    projects:[
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Project'
+        }
+    ]
 });
 
 userSchema.pre('save', async function(next){

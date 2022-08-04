@@ -14,6 +14,10 @@ const projectSchema = new Schema({
     description: {
         type: String
     },
+    organizer: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
     skills:[Skill.Schema],
     teammates:[User.Schema]
 });
