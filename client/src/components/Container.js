@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import NavTabs from "./NavTabs";
 import Login from "./pages/Login";
-import SignUp from "./pages/SignUp";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Signup from "./pages/SignUp";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import ChooseSkills from "./pages/ChooseSkills";
+import CreateProfile from "./pages/CreateProfile";
 
 // Menu Options
 import Welcome from "./pages/Welcome";
@@ -34,6 +35,9 @@ export default function Container() {
     if (currentPage === "findArrayers") {
       return <Arrayers />;
     }
+    if (currentPage === "SignUp") {
+      return <Signup />;
+}
     if (currentPage === "Requests") {
       return <Requests />;
     }
@@ -63,6 +67,8 @@ export default function Container() {
             {/* Define a route that will take in variable data */}
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/createprofile" element={<CreateProfile />} />
+            <Route path="/chooseskills" element={<ChooseSkills />} />
           </Routes>
         </div>
       </div>
