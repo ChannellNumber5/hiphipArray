@@ -8,8 +8,8 @@ import Signup from "./pages/SignUp";
 // Menu Options
 import Welcome from "./pages/Welcome";
 import Profile from "./pages/myProfile";
-import myProjects from "./pages/myProjects";
-import findProjects from "./pages/findProjects";
+import Project from "./pages/myProjects";
+import Projects from "./pages/findProjects";
 import Arrayers from "./pages/findArrayers";
 import Requests from "./pages/requests";
 
@@ -26,10 +26,10 @@ export default function Container() {
       return <Profile />;
     }
     if (currentPage === "myProjects") {
-      return <myProjects />;
+      return <Project />;
     }
     if (currentPage === "findProjects") {
-      return <findProjects />;
+      return <Projects />;
     }
     if (currentPage === "findArrayers") {
       return <Arrayers />;
