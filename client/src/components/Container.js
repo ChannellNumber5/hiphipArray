@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-
 import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
-
+// Menu
 import NavTabs from "./NavTabs";
-
+// Pages
 import Welcome from "./pages/Welcome";
 import Signup from "./pages/SignUp";
 import Login from "./pages/Login";
@@ -12,8 +11,11 @@ import Project from "./pages/myProjects";
 import Projects from "./pages/findProjects";
 import Arrayers from "./pages/findArrayers";
 import Requests from "./pages/requests"
+import ChooseSkills from "./pages/ChooseSkills";
+import CreateProfile from "./pages/CreateProfile";
 
 export default function Container() {
+
 
   return (
     <Router>
@@ -51,6 +53,14 @@ export default function Container() {
               <Route 
                 path="Requests" 
                 element={<Requests />} 
+              />
+              <Route 
+                path="chooseSkills" 
+                element={<ChooseSkills />} 
+              />
+              <Route 
+                path="CreateProfile" 
+                element={<CreateProfile />} 
               />
             </Routes>
         </div>
