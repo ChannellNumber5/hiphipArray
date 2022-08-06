@@ -22,6 +22,7 @@ const typeDefs = gql`
     projectName: String
     description: String
     organizer: User
+    neededSkills: [Skill]
   }
 
   type Auth {
@@ -31,28 +32,21 @@ const typeDefs = gql`
 
   type Query {
     users: [User]
-    user: (username: String!): User
+    user(username: String!): User
     skills(skillName: String): [Skill]
-    skill(skillId: ID!): Skill
-    projects(projectName: String) : [Project]
-    project(projectId: ID!): Project
+    skill(_id: ID!): Skill
+    projects(projectName: String): [Project]
+    project(_id: ID!): Project
     me: User
   }
 
   type Mutation {
-    addUser(
-      username: String!, 
-      email: String!,
-      description: String!,
-      password: String!): Auth
+    addUser(username: String!, email: String!, description: String!, password: String!, skills:[ID]!): Auth
 
-    updateUser(username: String!, 
-      email: String!,
-      description: String!, 
-      password: String!): Auth
+    updateUser(username: String!, email: String!, description: String!, password: String!): Auth
 
     login(email: String!, password: String!): Auth
-    addSkill(skillName: String! description: String!): Skill 
+    addSkill(skillName: String!, description: String!): Skill 
     removeSkill(skillId: ID!): Skill
 
     updateSkills(
@@ -60,10 +54,10 @@ const typeDefs = gql`
       skillName: String!, 
       description: String!): Skill
 
-    addProject(projectName: String! description: String!): Project
+    addProject(projectName: String!, description: String!): Project
     removeProject(projectId: ID!): Project
     
-    updateProject:(
+    updateProject(
       _id: ID!, 
       projectName: String!, 
       description: String!): Project
