@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function ChooseSkills() {
-  const [userskills, setSkills] = useState([]);
+  const [userskills, addSkill] = useState([]);
 
   const handleChange = (event) => {
-    setSkills(event.target.value);
+    addSkill((arr) => [...arr, event.target.value]);
   };
 
-  const handleClick = (event) => {
-    event.preventDefault();
-  };
+  // const handleClick = (event) => {
+  //   event.preventDefault();
+  // };
 
   return (
     <div>
