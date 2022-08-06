@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const { User } = require('./User');
+// const { User } = require('./User');
 
 const skillSchema = new Schema({
     skillName: {
@@ -13,7 +13,12 @@ const skillSchema = new Schema({
     description: {
         type: String
     },
-    users:[User.Schema]
+    users:[ 
+        {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+        }
+    ]
 });
 
 const Skill = mongoose.model('Skill', skillSchema);

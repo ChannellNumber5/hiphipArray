@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const { Skill } = require('./Skill');
-const { User } = require('./User');
+// const { Skill } = require('./Skill');
+// const { User } = require('./User');
 
 const projectSchema = new Schema({
     projectName: {
@@ -18,8 +18,15 @@ const projectSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    skills:[Skill.Schema],
-    teammates:[User.Schema]
+    skills:[        
+        {
+        type: Schema.Types.ObjectId,
+        ref: 'Skill'
+        }],
+    teammates:[        {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+        }]
 });
 
 const Project = mongoose.model('Project', projectSchema);

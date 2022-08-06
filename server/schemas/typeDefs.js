@@ -31,7 +31,7 @@ const typeDefs = gql`
 
   type Query {
     users: [User]
-    user: (username: String!): User
+    user(username: String!): User
     skills(skillName: String): [Skill]
     skill(_id: ID!): Skill
     projects(projectName: String): [Project]
@@ -45,9 +45,8 @@ const typeDefs = gql`
     updateUser(username: String!, email: String!, description: String!, password: String!): Auth
 
     login(email: String!, password: String!): Auth
-    # addSkill(skillName: String!, description: String!): Skill
-    addSkill(skills: [ID]): User 
-    removeSkill(_id: ID!): Skill
+    addSkill(skillName: String!, description: String!): Skill 
+    removeSkill(skillId: ID!): Skill
 
     updateSkills(
       _id: ID!, 
@@ -55,9 +54,9 @@ const typeDefs = gql`
       description: String!): Skill
 
     addProject(projectName: String!, description: String!): Project
-    removeProject(_id: ID!): Project
+    removeProject(projectId: ID!): Project
     
-    updateProject:(
+    updateProject(
       _id: ID!, 
       projectName: String!, 
       description: String!): Project

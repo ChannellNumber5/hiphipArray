@@ -57,7 +57,7 @@ export default function SignUp() {
             type="password"
             placeholder="Password"
           />
-          <Link to="/chooseskills">
+          <Link to="/createprofile">
             <button type="button">
               {/* <button type="button" onClick={handleFormSubmit}> */}
               Submit

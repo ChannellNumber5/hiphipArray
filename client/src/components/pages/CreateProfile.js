@@ -7,7 +7,7 @@ export default function CreateProfile() {
       <h1>Create Your Profile</h1>
       <p>
         <Link to="/chooseskills">
-          <button>Submit</button>
+          <button>Next</button>
         </Link>
       </p>
     </div>
