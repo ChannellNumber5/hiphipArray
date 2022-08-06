@@ -5,18 +5,15 @@ export default function ChooseSkills() {
   const [userskills, addSkill] = useState([]);
 
   const handleChange = (event) => {
-    addSkill((arr) => [...arr, event.target.value]);
+    //creates a new array called arr from the oldarray
+    addSkill((oldarray) => [...oldarray, event.target.value]);
   };
-
-  // const handleClick = (event) => {
-  //   event.preventDefault();
-  // };
 
   return (
     <div>
       <h1>Let's Create Your Profile!</h1>
       <h1>What are your skills?</h1>
-      <p>{userskills}</p>
+      <p>{userskills.join(", ")}</p>
       <ul>
         <li>
           <button onClick={handleChange} value="HTML">
