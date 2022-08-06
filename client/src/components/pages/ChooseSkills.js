@@ -5,7 +5,6 @@ export default function ChooseSkills() {
   const [userskills, addSkill] = useState([]);
 
   const handleChange = (event) => {
-    //creates a new array called arr from the oldarray
     addSkill((oldarray) => [...oldarray, event.target.value]);
   };
 
