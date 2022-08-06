@@ -33,35 +33,29 @@ const typeDefs = gql`
     users: [User]
     user: (username: String!): User
     skills(skillName: String): [Skill]
-    skill(skillId: ID!): Skill
-    projects(projectName: String) : [Project]
-    project(projectId: ID!): Project
+    skill(_id: ID!): Skill
+    projects(projectName: String): [Project]
+    project(_id: ID!): Project
     me: User
   }
 
   type Mutation {
-    addUser(
-      username: String!, 
-      email: String!,
-      description: String!,
-      password: String!): Auth
+    addUser(username: String!, email: String!, description: String!, password: String!): Auth
 
-    updateUser(username: String!, 
-      email: String!,
-      description: String!, 
-      password: String!): Auth
+    updateUser(username: String!, email: String!, description: String!, password: String!): Auth
 
     login(email: String!, password: String!): Auth
-    addSkill(skillName: String! description: String!): Skill 
-    removeSkill(skillId: ID!): Skill
+    # addSkill(skillName: String!, description: String!): Skill
+    addSkill(skills: [ID]): User 
+    removeSkill(_id: ID!): Skill
 
     updateSkills(
       _id: ID!, 
       skillName: String!, 
       description: String!): Skill
 
-    addProject(projectName: String! description: String!): Project
-    removeProject(projectId: ID!): Project
+    addProject(projectName: String!, description: String!): Project
+    removeProject(_id: ID!): Project
     
     updateProject:(
       _id: ID!, 
