@@ -18,7 +18,7 @@ const projectSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    skills:[        
+    neededSkills:[        
         {
         type: Schema.Types.ObjectId,
         ref: 'Skill'

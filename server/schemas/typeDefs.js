@@ -22,6 +22,7 @@ const typeDefs = gql`
     projectName: String
     description: String
     organizer: User
+    neededSkills: [Skill]
   }
 
   type Auth {
