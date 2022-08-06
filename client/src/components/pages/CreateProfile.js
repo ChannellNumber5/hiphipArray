@@ -21,9 +21,11 @@ export default function CreateProfile() {
 
   return (
     <div>
-      <h1>Create Your Profile</h1>
+      <h1>Let's Create Your Profile!</h1>
+      <h1>Account Info</h1>
       <p>Hello {name}</p>
       <form className="form">
+        <label> Name: </label>
         <input
           value={name}
           name="name"
@@ -31,6 +33,9 @@ export default function CreateProfile() {
           type="text"
           placeholder="name"
         />
+        <label> Description:</label>
+        {/* <textarea></textarea> */}
+
         <input
           value={description}
           name="description"
@@ -41,7 +46,7 @@ export default function CreateProfile() {
       </form>
       <p>
         <Link to="/chooseskills">
-          <button>Next</button>
+          <button>Choose my skills</button>
         </Link>
       </p>
     </div>
