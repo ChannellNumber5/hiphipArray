@@ -1,76 +1,112 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const userskills = [];
-
-const addskill = () => {
-  const [userskills, setList] = React.useState([]);
-};
-
-// function addskill(e) {
-//   userskills.push(e.target);
-//   console.log(userskills);
-// }
-
 export default function ChooseSkills() {
+  const [userskills, setSkills] = useState([]);
+
+  const handleChange = (event) => {
+    setSkills(event.target.value);
+  };
+
+  const handleClick = (event) => {
+    event.preventDefault();
+  };
+
   return (
     <div>
       <h1>Let's Create Your Profile!</h1>
       <h1>What are your skills?</h1>
+      <p>{userskills}</p>
       <ul>
         <li>
-          <button onclick={addskill}>HTML</button>
+          <button onClick={handleChange} value="HTML">
+            HTML
+          </button>
         </li>
         <li>
-          <button>CSS</button>
+          <button onClick={handleChange} value="CSS">
+            CSS
+          </button>
         </li>
         <li>
-          <button>JavaScript</button>
+          <button onClick={handleChange} value="JavaScript">
+            JavaScript
+          </button>
         </li>
         <li>
-          <button>React</button>
+          <button onClick={handleChange} value="React">
+            React
+          </button>
         </li>
         <li>
-          <button>Python</button>
+          <button onClick={handleChange} value="Python">
+            Python
+          </button>
         </li>
         <li>
-          <button>Node</button>
+          <button onClick={handleChange} value="Node">
+            Node
+          </button>
         </li>
         <li>
-          <button>SQL</button>
+          <button onClick={handleChange} value="SQL">
+            SQL
+          </button>
         </li>
         <li>
-          <button>Angular</button>
+          <button onClick={handleChange} value="Angular">
+            Angular
+          </button>
         </li>
         <li>
-          <button>MongoDB</button>
+          <button onClick={handleChange} value="MongoDB">
+            MongoDB
+          </button>
         </li>
         <li>
-          <button>PHP</button>
+          <button onClick={handleChange} value="PHP">
+            PHP
+          </button>
         </li>
         <li>
-          <button>Jira</button>
+          <button onClick={handleChange} value="Jira">
+            Jira
+          </button>
         </li>
         <li>
-          <button>Java</button>
+          <button onClick={handleChange} value="Java">
+            Java
+          </button>
         </li>
         <li>
-          <button>C++</button>
+          <button onClick={handleChange} value="C++">
+            C++
+          </button>
         </li>
         <li>
-          <button>C#</button>
+          <button onClick={handleChange} value="C#">
+            C#
+          </button>
         </li>
         <li>
-          <button>Swift</button>
+          <button onClick={handleChange} value="Swift">
+            Swift
+          </button>
         </li>
         <li>
-          <button>G0</button>
+          <button onClick={handleChange} value="G0">
+            G0
+          </button>
         </li>
         <li>
-          <button>Ruby</button>
+          <button onClick={handleChange} value="Ruby">
+            Ruby
+          </button>
         </li>
         <li>
-          <button>TypeScript</button>
+          <button onClick={handleChange} value="TypeScript">
+            TypeScript
+          </button>
         </li>
       </ul>
       <p>
