@@ -73,3 +73,8 @@ export const reducer = (state, action) => {
         };
   }
 };
+
+export function useSkillReducer(initialState) {
+    return useReducer(reducer, initialState);
+  }
+  
