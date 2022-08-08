@@ -14,7 +14,7 @@ const projectSchema = new Schema({
     description: {
         type: String
     },
-    organizer: {
+    teamLead: {
         type: Schema.Types.ObjectId,
         ref: 'User'
     },

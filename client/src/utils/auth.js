@@ -1,45 +1,42 @@
 import decode from 'jwt-decode';
 
 class AuthService {
-  getProfile() {
-    return decode(this.getToken());
-  }
-
-  loggedIn() {
-    // Checks if there is a saved token and it's still valid
-    const token = this.getToken();
-    return !!token && !this.isTokenExpired(token);
-  }
-
-  isTokenExpired(token) {
-    try {
-      const decoded = decode(token);
-      if (decoded.exp < Date.now() / 1000) {
-        return true;
-      } else return false;
-    } catch (err) {
-      return false;
+    getProfile() {
+        return decode(this.getToken()); //decodes the token that is created when a new user is created/added to the appliation
     }
-  }
 
-  getToken() {
-    // Retrieves the user token from localStorage
-    return localStorage.getItem('id_token');
-  }
+    loggedIn() {
+        const token = this.getToken();
+        return !token && !this.isTokenExpired(token);
+    }
 
-  login(idToken) {
-    // Saves user token to localStorage
-    localStorage.setItem('id_token', idToken);
+    isTokenExpired(token) {
+        try {
+            const decoded = decode(token);
+            if (decoded.exp < Date.now() / 1000) {
+                return true;
+            } else return false;
+        } catch(err) {
+            return false;
+        }
+    }
 
-    window.location.assign('/');
-  }
+    getToken() {
+        return localStorage.getItem('id_token');
+    }
 
-  logout() {
-    // Clear user token and profile data from localStorage
-    localStorage.removeItem('id_token');
-    // this will reload the page and reset the state of the application
-    window.location.assign('/');
-  }
+    login(idToken) {
+        localStorage.setItem('id_token', idToken);
+
+        window.location.assign('/'); //need to figure out where we want the window to assign, should be the homepage or the profile page
+    }
+
+    logout() {
+        localStorage.removeItem('id_token');
+
+        window.location.assign('/'); //need to figure out where we want the window to assign afer logout... should be the login page, which may not be just the root /
+    }
 }
 
-export default new AuthService();
+export default new AuthService(); //exports a new instance of AuthService
+

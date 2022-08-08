@@ -1,8 +1,34 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_USER = gql`
+export const QUERY_USERS = gql`
     {
-        user {
+        users {
+            username
+            skills{
+                skillName
+                description
+            }
+            projects {
+                projectName
+                description
+                skills {
+                    skillName
+                }
+                teammates {
+                    username
+                    skills {
+                        skillName
+                    }
+                }
+            }
+        }
+    }
+`;
+
+export const QUERY_USER = gql`
+    query getOneUser($userId: ID!)
+    {
+        user(_id: $userId) {
             username
             skills{
                 skillName
@@ -41,7 +67,7 @@ export const QUERY_ALL_SKILLS = gql`
 
 export const QUERY_USERS_BY_SKILLS = gql`
     query getUsersBySkill($skill: ID) {
-        skills(skill: $skill) {
+        skills(_id: $skill) {
             users
         }
     }
@@ -56,6 +82,24 @@ export const QUERY_PROJECTS= gql`
             skills {
                 _id
                 skillName
+            }
+        }
+    }
+`;
+
+export const QUERY_PROJECT= gql`
+    query getOneProject($projectId: ID!) {
+        project(_id: $projectId) {
+            _id
+            projectName
+            description
+            skills {
+                _id
+                skillName
+            }
+            teammates {
+                _id
+                username
             }
         }
     }
