@@ -32,7 +32,7 @@ class AuthService {
     }
 
     logout() {
-        localStorage.removeItem('id_token', idToken);
+        localStorage.removeItem('id_token');
 
         window.location.assign('/'); //need to figure out where we want the window to assign afer logout... should be the login page, which may not be just the root /
     }

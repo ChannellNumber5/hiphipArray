@@ -34,7 +34,7 @@ export const UPDATE_USER = gql`
 `;
 
 export const ADD_SKILL = gql`
-    mutation addSkill($skillName: String!, description: String!) {
+    mutation addSkill($skillName: String!, $description: String!) {
         addSkill(skillName: $skillName, description: $description) {
             skillName
             description

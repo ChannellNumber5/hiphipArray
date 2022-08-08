@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Link, useMutation } from "react-router-dom";
+import { Link} from "react-router-dom";
+import { useMutation } from '@apollo/client';
 import { LOGIN } from '../../utils/mutations';
 import  Auth from '../../utils/auth';
 
@@ -40,6 +41,7 @@ export default function Login() {
     <div>
       <h1>Login</h1>
       <p>
+        <form onSubmit={handleFormSubmit}>
         <input
           value={userName}
           name="userName"
@@ -56,8 +58,9 @@ export default function Login() {
         />
 
         <Link to="/myprofile">
-          <button onClick={handleFormSubmit}>Login</button>
+          <button type='submit'>Login</button>
         </Link>
+        </form>
       </p>
     </div>
   );
