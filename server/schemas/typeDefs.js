@@ -21,7 +21,7 @@ const typeDefs = gql`
     _id: ID
     projectName: String
     description: String
-    organizer: User
+    teamLead: User
     neededSkills: [Skill]
   }
 
