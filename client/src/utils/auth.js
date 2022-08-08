@@ -39,3 +39,4 @@ class AuthService {
 }
 
 export default new AuthService(); //exports a new instance of AuthService
+
