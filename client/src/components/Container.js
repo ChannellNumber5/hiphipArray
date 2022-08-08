@@ -1,12 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  createHttpLink,
-} from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
+
 
 
 // Menu
@@ -23,28 +17,9 @@ import Requests from "./pages/requests";
 import ChooseSkills from "./pages/ChooseSkills";
 import CreateProfile from "./pages/CreateProfile";
 
-const httpLink = createHttpLink({
-  uri: '/graphql',
-});
-
-const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem('id_token');
-  return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : '',
-    },
-  };
-});
-
-const client = new ApolloClient({
-  link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
-});
 
 export default function Container() {
   return (
-    <ApolloProvider client={client}>
       <Router>
         <div>
           <NavTabs></NavTabs>
@@ -68,6 +43,5 @@ export default function Container() {
           </Routes>
         </div>
       </Router>
-    </ApolloProvider>
   );
 }
