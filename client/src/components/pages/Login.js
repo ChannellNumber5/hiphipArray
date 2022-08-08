@@ -31,6 +31,8 @@ function Login(props) {
 
   return (
     <div>
+       <Link to="/signup">← Go to Signup</Link>
+
       <h1>Login</h1>
       <form onSubmit={handleFormSubmit}>
         <label htmlFor="email">Email address:</label>

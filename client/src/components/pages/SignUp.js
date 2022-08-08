@@ -1,70 +1,69 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useMutation } from '@apollo/client';
+import Auth from '../../utils/auth'
+import { ADD_USER } from "../../utils/mutations";
 
-export default function SignUp() {
-  // Create state variables for the fields in the form
-  // We are also setting their initial values to an empty string
-  const [email, setEmail] = useState("");
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
+function Signup(props) {
+  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [addUser] = useMutation(ADD_USER);
 
-  const handleInputChange = (e) => {
-    // Getting the value and name of the input which triggered the change
-    const { target } = e;
-    const inputType = target.name;
-    const inputValue = target.value;
-
-    // Based on the input type, we set the state of either email, username, and password
-    if (inputType === "email") {
-      setEmail(inputValue);
-    } else if (inputType === "userName") {
-      setUserName(inputValue);
-    } else {
-      setPassword(inputValue);
-    }
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    const mutationResponse = await addUser({
+      variables: {
+        email: formState.email,
+        password: formState.password,
+        username: formState.username
+      },
+    });
+    const token = mutationResponse.data.addUser.token;
+    Auth.login(token);
   };
 
-  const handleFormSubmit = (e) => {
-    // Preventing the default behavior of the form submit (which is to refresh the page)
-    e.preventDefault();
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
   };
 
   return (
     <div>
+      <Link to="/login">← Go to Login</Link>
       <h1>Sign up</h1>
-
-      <div>
-        <p>Hello {userName}</p>
-        <form className="form">
-          <input
-            value={email}
-            name="email"
-            onChange={handleInputChange}
-            type="email"
-            placeholder="email"
-          />
-          <input
-            value={userName}
-            name="userName"
-            onChange={handleInputChange}
-            type="text"
-            placeholder="username"
-          />
-          <input
-            value={password}
-            name="password"
-            onChange={handleInputChange}
-            type="password"
-            placeholder="Password"
-          />
-          <Link to="/createprofile">
-            <button type="button">
-              {/* <button type="button" onClick={handleFormSubmit}> */}
-              Submit
-            </button>
-          </Link>
-        </form>
-      </div>
+      <form onSubmit={handleFormSubmit}>
+        <label htmlFor="username">Username:</label>
+        <input
+          placeholder="user"
+          name="username"
+          type="username"
+          id="username"
+          onChange={handleChange}
+        />
+        <label htmlFor="email">Email:</label>
+        <input
+          placeholder="youremail@test.com"
+          name="email"
+          type="email"
+          id="email"
+          onChange={handleChange}
+        />
+        <label htmlFor="pwd">Password:</label>
+        <input
+          placeholder="******"
+          name="password"
+          type="password"
+          id="pwd"
+          onChange={handleChange}
+        />
+        <Link to="/createprofile">
+          <button type="submit">Submit</button>
+        </Link>
+      </form>
     </div>
   );
 }
+
+export default Signup;
