@@ -12,9 +12,9 @@ function Signup(props) {
     event.preventDefault();
     const mutationResponse = await addUser({
       variables: {
+        username: formState.username,
         email: formState.email,
         password: formState.password,
-        username: formState.username
       },
     });
     const token = mutationResponse.data.addUser.token;
@@ -58,9 +58,9 @@ function Signup(props) {
           id="pwd"
           onChange={handleChange}
         />
-        <Link to="/createprofile">
+        {/* <Link to="/createprofile"> */}
           <button type="submit">Submit</button>
-        </Link>
+        {/* </Link> */}
       </form>
     </div>
   );

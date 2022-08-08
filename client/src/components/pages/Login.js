@@ -56,9 +56,9 @@ function Login(props) {
             <p className="error-text">The provided credentials are incorrect</p>
           </div>
         ) : null}
-        <Link to="/myprofile">
+        {/* <Link to="/myprofile"> */}
           <button type="submit">Login</button>
-        </Link>
+        {/* </Link> */}
       </form>
     </div>
   );
