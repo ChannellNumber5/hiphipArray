@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useMatch } from "react-router-dom";
+import { LOGIN } from '../../utils/mutations';
+import  Auth from '../../utils/auth';
 
 export default function Login() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [login, { error }] = useMutation(LOGIN);
 
   const handleInputChange = (e) => {
     // Getting the value and name of the input which triggered the change
@@ -19,9 +22,18 @@ export default function Login() {
     }
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     e.preventDefault();
+    try {
+      const mutationResponse = await login({
+        variables: {username: userName, password: password},
+      });
+      const token = mutationResponse.data.login.token;
+      Auth.login(token);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (
@@ -44,7 +56,7 @@ export default function Login() {
         />
 
         <Link to="/myprofile">
-          <button>Login</button>
+          <button onClick={handleFormSubmit}>Login</button>
         </Link>
       </p>
     </div>
