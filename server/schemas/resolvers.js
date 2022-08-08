@@ -11,22 +11,22 @@ const resolvers = {
       return User.findOne({ username }).populate('skills');
     },
     skills: async (parent, { skillName }) => {
-        const params = skillName ? { skillName } : {};
-        return Skill.find(params).sort({skillName: 1});
-      },
-      skill: async (parent, { skillId }) => {
-        return Skill.findOne({ _id: skillId });
-      },
-      projects: async (parent, { projectName }) => {
-        const params = projectName ? { projectName } : {};
-        return Project.find(params).sort({projectName: 1});
-      },
-      project: async (parent, { projectId }) => {
-        return Project.findOne({ _id: projectId });
-      },
+      const params = skillName ? { skillName } : {};
+      return Skill.find(params).sort({ skillName: 1 });
+    },
+    skill: async (parent, { skillId }) => {
+      return Skill.findOne({ _id: skillId });
+    },
+    projects: async (parent, { projectName }) => {
+      const params = projectName ? { projectName } : {};
+      return Project.find(params).sort({ projectName: 1 });
+    },
+    project: async (parent, { projectId }) => {
+      return Project.findOne({ _id: projectId });
+    },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('skills','projects');
+        return User.findOne({ _id: context.user._id }).populate('skills', 'projects');
       }
       throw new AuthenticationError('You need to be logged in!');
     },
@@ -65,8 +65,8 @@ const resolvers = {
     addSkill: async (parent, { skillName, description }, context) => {
       if (context.user) {
         const skill = await Skill.create({
-            skillName,
-            description
+          skillName,
+          description
         });
 
         await User.findOneAndUpdate(
@@ -94,36 +94,36 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
     addProject: async (parent, { projectName, description }, context) => {
-        if (context.user) {
-          const project = await Project.create({
-            projectName,
-              description
-          });
-  
-          await User.findOneAndUpdate(
-            { _id: context.user._id },
-            { $addToSet: { projects: project._id } }
-          );
-  
-          return project;
-        }
-        throw new AuthenticationError('You need to be logged in!');
-      },
-      removeproject: async (parent, { projectId }, context) => {
-        if (context.user) {
-          const project = await Project.findOneAndDelete({
-            _id: projectId,
-          });
-  
-          await User.findOneAndUpdate(
-            { _id: context.user._id },
-            { $pull: { projects: project._id } }
-          );
-  
-          return project;
-        }
-        throw new AuthenticationError('You need to be logged in!');
-      },
+      if (context.user) {
+        const project = await Project.create({
+          projectName,
+          description
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { projects: project._id } }
+        );
+
+        return project;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    removeProject: async (parent, { projectId }, context) => {
+      if (context.user) {
+        const project = await Project.findOneAndDelete({
+          _id: projectId,
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { projects: project._id } }
+        );
+
+        return project;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
   },
 };
 
