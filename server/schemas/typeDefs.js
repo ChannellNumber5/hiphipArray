@@ -32,18 +32,19 @@ const typeDefs = gql`
 
   type Query {
     users: [User]
-    user(username: String!): User
-    skills(skillName: String): [Skill]
-    skill(_id: ID!): Skill
-    projects(projectName: String): [Project]
+    user(userId: ID!): User
+    skills: [Skill]
+    skill(_id: ID!): [User]
+    # skill(_id: ID!): Skill
+    projects: [Project]
     project(_id: ID!): Project
     me: User
   }
 
   type Mutation {
-    addUser(username: String!, email: String!, description: String!, password: String!, skills:[ID]!): Auth
+    addUser(username: String!, email: String!, password: String!, description: String!, skills:[ID]!): Auth
 
-    updateUser(username: String!, email: String!, description: String!, password: String!): Auth
+    updateUser(username: String!, email: String!, password: String!, description: String!, skills:[ID]!, projects:[ID]): Auth
 
     login(email: String!, password: String!): Auth
     addSkill(skillName: String!, description: String!): Skill 
@@ -54,13 +55,16 @@ const typeDefs = gql`
       skillName: String!, 
       description: String!): Skill
 
-    addProject(projectName: String!, description: String!): Project
+    addProject(projectName: String!, description: String!, teamLead: ID!): Project
     removeProject(projectId: ID!): Project
     
     updateProject(
       _id: ID!, 
       projectName: String!, 
       description: String!): Project
+      teamLead: ID
+      neededSkills: [Skill]
+      teammates: [User]
   }
 `;
 
