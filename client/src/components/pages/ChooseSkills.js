@@ -1,5 +1,22 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import {
+  Tag,
+  TagLabel,
+  TagLeftIcon,
+  TagRightIcon,
+  TagCloseButton,
+  flexbox,
+} from "@chakra-ui/react";
+import { Button, ButtonGroup } from "@chakra-ui/react";
+
+const styles = {
+  buttonlist: {
+    background: "#e8eaf6",
+    display: "flex",
+    padding: "5px",
+  },
+};
 
 export default function ChooseSkills() {
   const [userskills, addSkill] = useState([]);
@@ -10,101 +27,157 @@ export default function ChooseSkills() {
 
   return (
     <div>
+      <Tag>Sample Tag</Tag>
       <h1>Let's Create Your Profile!</h1>
       <h1>What are your skills?</h1>
       <p>{userskills.join(", ")}</p>
-      <ul>
-        <li>
-          <button onClick={handleChange} value="HTML">
+      <ButtonGroup>
+          <Button
+            colorScheme="purple"
+            variant="solid"
+            onClick={handleChange}
+            value="HTML"
+          >
             HTML
-          </button>
-        </li>
-        <li>
-          <button onClick={handleChange} value="CSS">
+          </Button>
+          <Button
+            colorScheme="purple"
+            variant="solid"
+            onClick={handleChange}
+            value="CSS"
+          >
             CSS
-          </button>
-        </li>
-        <li>
-          <button onClick={handleChange} value="JavaScript">
+          </Button>
+          <Button
+            colorScheme="purple"
+            variant="solid"
+            onClick={handleChange}
+            value="JavaScript"
+          >
             JavaScript
-          </button>
-        </li>
-        <li>
-          <button onClick={handleChange} value="React">
+          </Button>
+          <Button
+            colorScheme="purple"
+            variant="solid"
+            onClick={handleChange}
+            value="React"
+          >
             React
-          </button>
-        </li>
-        <li>
-          <button onClick={handleChange} value="Python">
+          </Button>
+          <Button
+            colorScheme="purple"
+            variant="solid"
+            onClick={handleChange}
+            value="Python"
+          >
             Python
-          </button>
-        </li>
-        <li>
-          <button onClick={handleChange} value="Node">
+          </Button>
+          <Button
+            colorScheme="purple"
+            variant="solid"
+            n
+            onClick={handleChange}
+            value="Node"
+          >
             Node
-          </button>
-        </li>
-        <li>
-          <button onClick={handleChange} value="SQL">
+          </Button>
+          <Button
+            colorScheme="purple"
+            variant="solid"
+            onClick={handleChange}
+            value="SQL"
+          >
             SQL
-          </button>
-        </li>
-        <li>
-          <button onClick={handleChange} value="Angular">
+          </Button>
+          <Button
+            colorScheme="purple"
+            variant="solid"
+            onClick={handleChange}
+            value="Angular"
+          >
             Angular
-          </button>
-        </li>
-        <li>
-          <button onClick={handleChange} value="MongoDB">
+          </Button>
+          <Button
+            colorScheme="purple"
+            variant="solid"
+            onClick={handleChange}
+            value="MongoDB"
+          >
             MongoDB
-          </button>
-        </li>
-        <li>
-          <button onClick={handleChange} value="PHP">
+          </Button>
+          <Button
+            colorScheme="purple"
+            variant="solid"
+            onClick={handleChange}
+            value="PHP"
+          >
             PHP
-          </button>
-        </li>
-        <li>
-          <button onClick={handleChange} value="Jira">
+          </Button>
+          <Button
+            colorScheme="purple"
+            variant="solid"
+            onClick={handleChange}
+            value="Jira"
+          >
             Jira
-          </button>
-        </li>
-        <li>
-          <button onClick={handleChange} value="Java">
+          </Button>
+          <Button
+            colorScheme="purple"
+            variant="solid"
+            onClick={handleChange}
+            value="Java"
+          >
             Java
-          </button>
-        </li>
-        <li>
-          <button onClick={handleChange} value="C++">
+          </Button>
+          <Button
+            colorScheme="purple"
+            variant="solid"
+            onClick={handleChange}
+            value="C++"
+          >
             C++
-          </button>
-        </li>
-        <li>
-          <button onClick={handleChange} value="C#">
+          </Button>
+          <Button
+            colorScheme="purple"
+            variant="solid"
+            onClick={handleChange}
+            value="C#"
+          >
             C#
-          </button>
-        </li>
-        <li>
-          <button onClick={handleChange} value="Swift">
+          </Button>
+          <Button
+            colorScheme="purple"
+            variant="solid"
+            onClick={handleChange}
+            value="Swift"
+          >
             Swift
-          </button>
-        </li>
-        <li>
-          <button onClick={handleChange} value="G0">
+          </Button>
+          <Button
+            colorScheme="purple"
+            variant="solid"
+            onClick={handleChange}
+            value="G0"
+          >
             G0
-          </button>
-        </li>
-        <li>
-          <button onClick={handleChange} value="Ruby">
+          </Button>
+          <Button
+            colorScheme="purple"
+            variant="solid"
+            onClick={handleChange}
+            value="Ruby"
+          >
             Ruby
-          </button>
-        </li>
-        <li>
-          <button onClick={handleChange} value="TypeScript">
+          </Button>
+          <Button
+            colorScheme="purple"
+            variant="solid"
+            onClick={handleChange}
+            value="TypeScript"
+          >
             TypeScript
-          </button>
-        </li>
-      </ul>
+          </Button>
+      </ButtonGroup>
       <p>
         <Link to="/myprofile">
           <button>Finish Profile</button>
