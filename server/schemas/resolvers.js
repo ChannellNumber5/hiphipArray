@@ -94,6 +94,23 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+
+    addUserSkill: async (parent, { skillId }, context) => {
+      if (context.user) {
+        const skill = await Skill.findOneAndUpdate({
+          _id: skillId,
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { skills: skill._id } }
+        );
+
+        return skill;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+
     addProject: async (parent, { projectName, description }, context) => {
       if (context.user) {
         const project = await Project.create({
