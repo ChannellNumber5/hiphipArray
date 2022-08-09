@@ -5,7 +5,7 @@ import { LOGIN } from '../../utils/mutations';
 import  Auth from '../../utils/auth';
 
 export default function Login() {
-  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [login, { error }] = useMutation(LOGIN);
 
@@ -15,11 +15,11 @@ export default function Login() {
     const inputType = target.name;
     const inputValue = target.value;
 
-    // Based on the input type, we set the state of username or password
+    // Based on the input type, we set the state of the email or password
     if (inputType === "password") {
       setPassword(inputValue);
-    } else if (inputType === "userName") {
-      setUserName(inputValue);
+    } else if (inputType === "email") {
+      setEmail(inputValue);
     }
   };
 
@@ -28,26 +28,26 @@ export default function Login() {
     e.preventDefault();
     try {
       const mutationResponse = await login({
-        variables: {username: userName, password: password},
+        variables: {email: email, password: password},
       });
       const token = mutationResponse.data.login.token;
+      console.log("here is the token" + token);
       Auth.login(token);
-    } catch (e) {
-      console.error(e);
+    } catch (err) {
+      console.log(err);
     }
   };
 
   return (
     <div>
       <h1>Login</h1>
-      <p>
         <form onSubmit={handleFormSubmit}>
         <input
-          value={userName}
-          name="userName"
+          value={email}
+          name="email"
           onChange={handleInputChange}
           type="text"
-          placeholder="username"
+          placeholder="Email Address"
         />
         <input
           value={password}
@@ -56,12 +56,8 @@ export default function Login() {
           type="password"
           placeholder="Password"
         />
-
-        <Link to="/myprofile">
           <button type='submit'>Login</button>
-        </Link>
         </form>
-      </p>
     </div>
   );
 }
