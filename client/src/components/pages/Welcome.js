@@ -34,11 +34,6 @@ export default function Welcome() {
             </Box>
             <Spacer />
             <Stack direction="row" spacing={4}>
-              <Link to="/">
-                <Button bg="#A465FF" color="white" variant="solid">
-                  Home
-                </Button>
-              </Link>
               <IconButton
                 variant="outline"
                 color="#A465FF"
