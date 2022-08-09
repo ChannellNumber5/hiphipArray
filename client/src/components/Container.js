@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
 // Pages
 import Welcome from "./pages/Welcome";
 import Signup from "./pages/SignUp";
@@ -11,6 +12,7 @@ import Arrayers from "./pages/findArrayers";
 import Requests from "./pages/requests";
 import ChooseSkills from "./pages/ChooseSkills";
 import CreateProfile from "./pages/CreateProfile";
+
 
 export default function Container() {
   return (
