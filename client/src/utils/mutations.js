@@ -129,7 +129,7 @@ export const ADD_NEEDED_SKILL = gql `
         }
     }
 `
-
+// Not sure if UPDATE_PROJECT could handle this but wasn't sure how the resolver would be typed out
 export const REMOVE_NEEDED_SKILL = gql `
     mutation removeNeededSkill($projectName: String, $description: String $neededSkills: [ID]!) {
         removeNeededSkill(projectName: $projectName, description: $description, neededSkills: $neededSkills) {
