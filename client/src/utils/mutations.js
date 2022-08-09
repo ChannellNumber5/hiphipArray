@@ -116,3 +116,15 @@ export const UPDATE_PROJECT = gql`
         }
     }
 `;
+
+export const ADD_NEEDED_SKILL = gql `
+    mutation addNeededSkill($neededSkills: [ID]!) {
+        addNeededSkill(neededSkills: $neededSkills) {
+            projectName
+            description
+            neededSkills {
+                _id
+            }
+        }
+    }
+`
