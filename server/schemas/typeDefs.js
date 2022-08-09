@@ -60,7 +60,7 @@ const typeDefs = gql`
     removeSkill(skillId: ID!): Skill
     updateSkills(_id: ID!, skillName: String!, description: String!): Skill
     addUserSkill(skillId: ID!): User
-    removeUserSkill(skillID: ID!): User
+    removeUserSkill(skillId: ID!): User
 
     addProject(
       projectName: String!
@@ -80,15 +80,14 @@ const typeDefs = gql`
     ): Project
 
     addNeededSkill(
-      projectName: String,
-      description: String,
-      neededSkills: [ID]!
+      projectId: ID
+      skillId: ID!
     ): Project
 
     removeNeededSkill(
-      projectName: String,
-      description: String,
-      neededSkills: [ID]!): Project
+      projectId: ID
+      skillId: ID!
+      ): Project
   }
 `;
 
