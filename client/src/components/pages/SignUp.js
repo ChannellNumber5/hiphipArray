@@ -8,6 +8,8 @@ import {
   Box,
   Heading,
   Input,
+  Stack,
+  IconButton
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 
@@ -49,13 +51,28 @@ export default function SignUp() {
             gap="2"
             background="black"
             border="1px"
-            borderColor="purple"
+            borderColor="#A465FF"
           >
-            <Box p="2" color="purple.500">
-              <Heading size="md">ARRAY [ ]</Heading>
+            <Box p="2">
+              <Heading color="#A465FF" size="md">
+                ARRAY [ ]
+              </Heading>
             </Box>
             <Spacer />
-            <HamburgerIcon color="purple.500" />
+            <Stack direction="row" spacing={4}>
+              <Link to="/">
+                <Button bg="#A465FF" color="white" variant="solid">
+                  Home
+                </Button>
+              </Link>
+              <IconButton
+                variant="outline"
+                color="#A465FF"
+                border="1px"
+                borderColor="#A465FF"
+                icon={<HamburgerIcon />}
+              />
+            </Stack>
           </Flex>
           {/* <Link to="/myprofile">
           <button>Login</button>
@@ -65,11 +82,11 @@ export default function SignUp() {
               direction="column"
               background="purple.100"
               border="1px"
-              borderColor="purple.500"
+              borderColor="#A465FF"
               p={12}
               rounded={16}
             >
-              <Heading color="purple.500" mb={6}>
+              <Heading color="#A465FF" mb={6}>
                 Sign Up
               </Heading>
               <Input
@@ -77,9 +94,9 @@ export default function SignUp() {
                 variant="filled"
                 color="white"
                 background="white"
-                _placeholder={{ color: "purple.500" }}
+                _placeholder={{ color: "#A465FF" }}
                 border="1px"
-                borderColor="purple.500"
+                borderColor="#A465FF"
                 mb={3}
                 type="email"
               />

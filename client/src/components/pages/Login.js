@@ -8,6 +8,8 @@ import {
   Box,
   Heading,
   Input,
+  Stack,
+  IconButton,
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 
@@ -58,14 +60,43 @@ export default function Login() {
           gap="2"
           background="black"
           border="1px"
-          borderColor="purple"
+          borderColor="#A465FF"
         >
-          <Box p="2" color="purple.500">
+          <Box p="2">
+            <Heading color="#A465FF" size="md">
+              ARRAY [ ]
+            </Heading>
+          </Box>
+          <Spacer />
+          <Stack direction="row" spacing={4}>
+            <Link to="/">
+              <Button bg="#A465FF" color="white" variant="solid">
+                Home
+              </Button>
+            </Link>
+            <IconButton
+              variant="outline"
+              color="#A465FF"
+              border="1px"
+              borderColor="#A465FF"
+              icon={<HamburgerIcon />}
+            />
+          </Stack>
+        </Flex>
+        {/* <Flex
+          minWidth="max-content"
+          alignItems="center"
+          gap="2"
+          background="black"
+          border="1px"
+          borderColor="#A465FF"
+        >
+          <Box p="2" color="#A465FF">
             <Heading size="md">ARRAY [ ]</Heading>
           </Box>
           <Spacer />
-          <HamburgerIcon color="purple.500" />
-        </Flex>
+          <HamburgerIcon color="#A465FF" />
+        </Flex> */}
         {/* <Link to="/myprofile">
           <button>Login</button>
         </Link> */}
@@ -74,34 +105,36 @@ export default function Login() {
             direction="column"
             background="purple.100"
             border="1px"
-            borderColor="purple.500"
+            borderColor="#A465FF"
             p={12}
             rounded={16}
           >
-            <Heading color="purple.500" mb={6}>Login</Heading>
+            <Heading color="#A465FF" mb={6}>
+              Login
+            </Heading>
             <Input
               placeholder="EMAIL"
               variant="filled"
-              color="white"
+              color="black"
               background="white"
-              _placeholder={{ color: "purple.500" }}
+              _placeholder={{ color: "#A465FF" }}
               border="1px"
-              borderColor="purple.500"
+              borderColor="#A465FF"
               mb={3}
               type="email"
             />
             <Input
               placeholder="PASSWORD"
               variant="filled"
-              color="white"
+              color="black"
               background="white"
-              _placeholder={{ color: "purple.500" }}
+              _placeholder={{ color: "#A465FF" }}
               border="1px"
-              borderColor="purple.500"
+              borderColor="#A465FF"
               mb={3}
               type="text"
             />
-            <Button colorScheme="purple" variant="solid">
+            <Button bg="#A465FF" color="white" border="1px" variant="solid">
               Login
             </Button>
           </Flex>
