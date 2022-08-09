@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { Button, ButtonGroup } from "@chakra-ui/react";
 
 export default function Login() {
   const [userName, setUserName] = useState("");
@@ -42,10 +43,15 @@ export default function Login() {
           type="password"
           placeholder="Password"
         />
+       
 
         <Link to="/myprofile">
           <button>Login</button>
         </Link>
+
+        <Button colorScheme='purple' variant='solid'>Login</Button>
+
+        
       </p>
     </div>
   );
