@@ -1,9 +1,9 @@
-const { gql } = require('apollo-server-express');
+const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
   type User {
     _id: ID
-    username: String 
+    username: String
     email: String
     description: String
     skills: [Skill]
@@ -23,6 +23,7 @@ const typeDefs = gql`
     description: String
     teamLead: User
     neededSkills: [Skill]
+    teammates: [User]
   }
 
   type Auth {
@@ -44,26 +45,40 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
 
-    updateUser(username: String, email: String, password: String, description: String, skills:[ID], projects:[ID]): Auth
+    updateUser(
+      username: String
+      email: String
+      password: String
+      description: String
+      skills: [ID]
+      projects: [ID]
+    ): Auth
 
     login(email: String!, password: String!): Auth
-    
-    addSkill(skillName: String!, description: String!): Skill 
-    removeSkill(skillId: ID!): Skill
-    updateSkills(
-      _id: ID!, 
-      skillName: String!, 
-      description: String!): Skill
 
-    addProject(projectName: String!, description: String!, teamLead: ID!): Project
+    addSkill(skillName: String!, description: String!): Skill
+    removeSkill(skillId: ID!): Skill
+    updateSkills(_id: ID!, skillName: String!, description: String!): Skill
+    addUserSkill(skillId: ID!): User
+    removeUserSkill(skillID: ID!): User
+    updateUserSkills(skillID: ID!): User
+
+    addProject(
+      projectName: String!
+      description: String!
+      teamLead: ID!
+    ): Project
+
     removeProject(projectId: ID!): Project
+    
     updateProject(
-      _id: ID!, 
-      projectName: String!, 
-      description: String!): Project
-      teamLead: ID
-      neededSkills: [Skill]
-      teammates: [User]
+      _id: ID,
+      projectName: String,
+      description: String,
+      teamLead: ID,
+      neededSkills: [ID],
+      teammates: [ID]
+    ): Project
   }
 `;
 
