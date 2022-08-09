@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-// Menu
-import NavTabs from "./NavTabs";
 // Pages
 import Welcome from "./pages/Welcome";
 import Signup from "./pages/SignUp";
@@ -18,7 +16,6 @@ export default function Container() {
   return (
     <Router>
       <div>
-        <NavTabs></NavTabs>
         <Routes>
           <Route path="/" element={<Welcome />} />
           <Route path="/signup" element={<Signup />} />
