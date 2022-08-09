@@ -14,7 +14,7 @@ export default function Welcome() {
           <Sbutton text={signup} />
         </Link>
         <Link to="/login">
-          <Sbutton text={signup} />
+          <Sbutton text={login} />
         </Link>
       </p>
     </div>

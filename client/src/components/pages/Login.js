@@ -42,6 +42,7 @@ function Login(props) {
             type="email"
             id="email"
             onChange={handleChange}
+            value={formState.email}
           />
           <label htmlFor="pwd">Password:</label>
           <input
@@ -50,6 +51,7 @@ function Login(props) {
             type="password"
             id="pwd"
             onChange={handleChange}
+            value={formState.password}
           />
         {error ? (
           <div>
