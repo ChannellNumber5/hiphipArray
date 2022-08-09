@@ -61,7 +61,6 @@ const typeDefs = gql`
     updateSkills(_id: ID!, skillName: String!, description: String!): Skill
     addUserSkill(skillId: ID!): User
     removeUserSkill(skillID: ID!): User
-    updateUserSkills(skillID: ID!): User
 
     addProject(
       projectName: String!
