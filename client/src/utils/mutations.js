@@ -60,6 +60,15 @@ export const ADD_USER_SKILL = gql`
     }
 `;
 
+export const REMOVE_USER_SKILL = gql`
+    mutation removeUserSkill($skillId: ID!) {
+        removeUserSkill(_id: $skillId) {
+            skillName
+            description
+        }
+    }
+`;
+
 export const ADD_PROJECT = gql`
     mutation addProject($projectName: String!, $description: String!, $teamLead: String!) {
         addProject(projectName: $projectName, description: $description, teamLead: $teamLead) {
