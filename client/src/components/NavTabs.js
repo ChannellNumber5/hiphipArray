@@ -1,10 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Box } from "@chakra-ui/react";
 
 export default function NavTabs() {
   return (
-    <div>
-      NavTabs
-    </div>
+    <Box bg="black" w="100%" p={4} color="white" fontSize="40px">
+      Collabarray
+    </Box>
   );
 }

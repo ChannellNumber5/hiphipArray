@@ -1,70 +1,81 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import Auth from "../../utils/auth";
+import { ADD_USER } from "../../utils/mutations";
 
-export default function SignUp() {
-  // Create state variables for the fields in the form
-  // We are also setting their initial values to an empty string
-  const [email, setEmail] = useState("");
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleInputChange = (e) => {
-    // Getting the value and name of the input which triggered the change
-    const { target } = e;
-    const inputType = target.name;
-    const inputValue = target.value;
-
-    // Based on the input type, we set the state of either email, username, and password
-    if (inputType === "email") {
-      setEmail(inputValue);
-    } else if (inputType === "userName") {
-      setUserName(inputValue);
-    } else {
-      setPassword(inputValue);
-    }
+function Signup(props) {
+  const [formState, setFormState] = useState({ username:"",email: "", password: "" });
+  const [addUser] = useMutation(ADD_USER);
+console.log(formState)
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    const mutationResponse = await addUser({
+      variables: {
+        username: formState.username,
+        email: formState.email,
+        password: formState.password,
+      },
+    });
+    const token = mutationResponse.data.addUser.token;
+    Auth.login(token);
   };
 
-  const handleFormSubmit = (e) => {
-    // Preventing the default behavior of the form submit (which is to refresh the page)
-    e.preventDefault();
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
   };
 
   return (
-    <div>
-      <h1>Sign up</h1>
+    <div className="container my-1">
+      <Link to="/login">← Go to Login</Link>
 
-      <div>
-        <p>Hello {userName}</p>
-        <form className="form">
+      <h2>Signup</h2>
+      <form onSubmit={handleFormSubmit}>
+        <div className="flex-row space-between my-2">
+          <label htmlFor="username">Username:</label>
           <input
-            value={email}
+            placeholder="user"
+            name="username"
+            type="username"
+            id="username"
+            onChange={handleChange}
+            value={formState.username}
+          />
+        </div>
+        <div className="flex-row space-between my-2">
+          <label htmlFor="email">Email:</label>
+          <input
+            placeholder="youremail@test.com"
             name="email"
-            onChange={handleInputChange}
             type="email"
-            placeholder="email"
+            id="email"
+            onChange={handleChange}
+            value={formState.email}
           />
+        </div>
+        <div className="flex-row space-between my-2">
+          <label htmlFor="pwd">Password:</label>
           <input
-            value={userName}
-            name="userName"
-            onChange={handleInputChange}
-            type="text"
-            placeholder="username"
-          />
-          <input
-            value={password}
+            placeholder="******"
             name="password"
-            onChange={handleInputChange}
             type="password"
-            placeholder="Password"
+            id="pwd"
+            onChange={handleChange}
+            value={formState.password}
           />
-          <Link to="/createprofile">
-            <button type="button">
-              {/* <button type="button" onClick={handleFormSubmit}> */}
-              Submit
-            </button>
-          </Link>
-        </form>
-      </div>
+        </div>
+        <div className="flex-row flex-end">
+          {/* <Link to="/myprofile"> */}
+            <button type="submit">Submit</button>
+          {/* </Link> */}
+        </div>
+      </form>
     </div>
   );
 }
+
+export default Signup;

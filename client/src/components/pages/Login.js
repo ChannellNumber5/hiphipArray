@@ -1,67 +1,69 @@
-import React, { useState } from "react";
-import { Link} from "react-router-dom";
+import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
+import { Link } from 'react-router-dom';
 import { LOGIN } from '../../utils/mutations';
-import  Auth from '../../utils/auth';
+import Auth from '../../utils/auth';
 
-export default function Login() {
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
+function Login(props) {
+  const [formState, setFormState] = useState({ email: '', password: '' });
   const [login, { error }] = useMutation(LOGIN);
 
-  const handleInputChange = (e) => {
-    // Getting the value and name of the input which triggered the change
-    const { target } = e;
-    const inputType = target.name;
-    const inputValue = target.value;
-
-    // Based on the input type, we set the state of username or password
-    if (inputType === "password") {
-      setPassword(inputValue);
-    } else if (inputType === "userName") {
-      setUserName(inputValue);
-    }
-  };
-
-  const handleFormSubmit = async (e) => {
-    // Preventing the default behavior of the form submit (which is to refresh the page)
-    e.preventDefault();
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
     try {
       const mutationResponse = await login({
-        variables: {username: userName, password: password},
+        variables: { email: formState.email, password: formState.password },
       });
       const token = mutationResponse.data.login.token;
       Auth.login(token);
     } catch (e) {
-      console.error(e);
+      console.log(e);
     }
   };
 
-  return (
-    <div>
-      <h1>Login</h1>
-      <p>
-        <form onSubmit={handleFormSubmit}>
-        <input
-          value={userName}
-          name="userName"
-          onChange={handleInputChange}
-          type="text"
-          placeholder="username"
-        />
-        <input
-          value={password}
-          name="password"
-          onChange={handleInputChange}
-          type="password"
-          placeholder="Password"
-        />
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
 
-        <Link to="/myprofile">
-          <button type='submit'>Login</button>
-        </Link>
-        </form>
-      </p>
+  return (
+    <div className="container my-1">
+      <Link to="/signup">← Go to Signup</Link>
+
+      <h2>Login</h2>
+      <form onSubmit={handleFormSubmit}>
+          <label htmlFor="email">Email address:</label>
+          <input
+            placeholder="youremail@test.com"
+            name="email"
+            type="email"
+            id="email"
+            onChange={handleChange}
+            value={formState.email}
+          />
+          <label htmlFor="pwd">Password:</label>
+          <input
+            placeholder="******"
+            name="password"
+            type="password"
+            id="pwd"
+            onChange={handleChange}
+            value={formState.password}
+          />
+        {error ? (
+          <div>
+            <p className="error-text">The provided credentials are incorrect</p>
+          </div>
+        ) : null}
+        <div className="flex-row flex-end">
+          <button type="submit">Submit</button>
+        </div>
+      </form>
     </div>
   );
 }
+
+export default Login;
