@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import ArrayButton from "../Button";
 
 export default function Welcome() {
   return (
@@ -7,7 +8,7 @@ export default function Welcome() {
       <h1>Welcome Page</h1>
       <p>
         <Link to="/signup">
-          <button>Sign Up</button>
+          <ArrayButton/>
         </Link>
         <Link to="/login">
           <button>Log in</button>
