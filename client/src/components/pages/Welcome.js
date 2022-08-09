@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import ArrayButton from "../Button";
+import Sbutton from "../Button";
+
+const signup = "Sign Up";
+const login = "login";
 
 export default function Welcome() {
   return (
@@ -8,10 +11,10 @@ export default function Welcome() {
       <h1>Welcome Page</h1>
       <p>
         <Link to="/signup">
-          <ArrayButton/>
+          <Sbutton text={signup} />
         </Link>
         <Link to="/login">
-          <button>Log in</button>
+          <Sbutton text={signup} />
         </Link>
       </p>
     </div>
