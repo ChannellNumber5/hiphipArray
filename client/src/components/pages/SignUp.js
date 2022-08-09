@@ -1,5 +1,15 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import {
+  Button,
+  ButtonGroup,
+  Flex,
+  Spacer,
+  Box,
+  Heading,
+  Input,
+} from "@chakra-ui/react";
+import { HamburgerIcon } from "@chakra-ui/icons";
 
 export default function SignUp() {
   // Create state variables for the fields in the form
@@ -31,39 +41,76 @@ export default function SignUp() {
 
   return (
     <div>
-      <h1>Sign up</h1>
-
       <div>
-        <p>Hello {userName}</p>
-        <form className="form">
-          <input
-            value={email}
-            name="email"
-            onChange={handleInputChange}
-            type="email"
-            placeholder="email"
-          />
-          <input
-            value={userName}
-            name="userName"
-            onChange={handleInputChange}
-            type="text"
-            placeholder="username"
-          />
-          <input
-            value={password}
-            name="password"
-            onChange={handleInputChange}
-            type="password"
-            placeholder="Password"
-          />
-          <Link to="/createprofile">
-            <button type="button">
-              {/* <button type="button" onClick={handleFormSubmit}> */}
-              Submit
-            </button>
-          </Link>
-        </form>
+        <p>
+          <Flex
+            minWidth="max-content"
+            alignItems="center"
+            gap="2"
+            background="black"
+            border="1px"
+            borderColor="purple"
+          >
+            <Box p="2" color="purple.500">
+              <Heading size="md">ARRAY [ ]</Heading>
+            </Box>
+            <Spacer />
+            <HamburgerIcon color="purple.500" />
+          </Flex>
+          {/* <Link to="/myprofile">
+          <button>Login</button>
+        </Link> */}
+          <Flex height="100vh" alignItems="center" justifyContent="center">
+            <Flex
+              direction="column"
+              background="purple.100"
+              border="1px"
+              borderColor="purple.500"
+              p={12}
+              rounded={16}
+            >
+              <Heading color="purple.500" mb={6}>
+                Sign Up
+              </Heading>
+              <Input
+                placeholder="EMAIL"
+                variant="filled"
+                color="white"
+                background="white"
+                _placeholder={{ color: "purple.500" }}
+                border="1px"
+                borderColor="purple.500"
+                mb={3}
+                type="email"
+              />
+              <Input
+                placeholder="USERNAME"
+                variant="filled"
+                color="white"
+                background="white"
+                _placeholder={{ color: "purple.500" }}
+                border="1px"
+                borderColor="purple.500"
+                mb={3}
+                type="username"
+              />
+              <Input
+                placeholder="PASSWORD"
+                variant="filled"
+                color="white"
+                background="white"
+                _placeholder={{ color: "purple.500" }}
+                border="1px"
+                borderColor="purple.500"
+                mb={3}
+                type="password"
+              />
+              <Button colorScheme="purple" variant="solid">
+                Sign Up
+              </Button>
+            </Flex>
+          </Flex>
+        </p>
       </div>
     </div>
   );

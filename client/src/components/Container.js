@@ -18,7 +18,7 @@ export default function Container() {
   return (
     <Router>
       <div>
-        <NavTabs></NavTabs>
+        {/* <NavTabs></NavTabs> */}
         <Routes>
           <Route path="/" element={<Welcome />} />
           <Route path="/signup" element={<Signup />} />
