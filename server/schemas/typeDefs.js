@@ -79,8 +79,16 @@ const typeDefs = gql`
       teammates: [ID]
     ): Project
 
-    addNeededSkill(neededSkills: [ID]!): Project
-    removeNeededSkill(neededSkills: [ID]!): Project
+    addNeededSkill(
+      projectName: String,
+      description: String,
+      neededSkills: [ID]!
+    ): Project
+
+    removeNeededSkill(
+      projectName: String,
+      description: String,
+      neededSkills: [ID]!): Project
   }
 `;
 

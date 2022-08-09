@@ -95,7 +95,7 @@ export const REMOVE_PROJECT = gql`
 `;
 
 export const UPDATE_PROJECT = gql`
-    mutation updateProject($projectName: String!, $description: String!, $teamLead: String!, $neededSkills:[Skill], $teammates:[User]) {
+    mutation updateProject($projectName: String, $description: String, $teamLead: String, $neededSkills:[Skill], $teammates:[User]) {
         updateProject(projectName: $projectName, description: $description, teamLead: $teamLead, neededSkills: $neededSkills, teammates:$teammates) {
             projectName
             description
@@ -117,9 +117,22 @@ export const UPDATE_PROJECT = gql`
     }
 `;
 
+// Not sure if UPDATE_PROJECT could handle this but wasn't sure how the resolver would be typed out
 export const ADD_NEEDED_SKILL = gql `
-    mutation addNeededSkill($neededSkills: [ID]!) {
-        addNeededSkill(neededSkills: $neededSkills) {
+    mutation addNeededSkill($projectName: String, $description: String $neededSkills: [ID]!) {
+        addNeededSkill(projectName: $projectName, description: $description, neededSkills: $neededSkills) {
+            projectName
+            description
+            neededSkills {
+                _id
+            }
+        }
+    }
+`
+
+export const REMOVE_NEEDED_SKILL = gql `
+    mutation removeNeededSkill($projectName: String, $description: String $neededSkills: [ID]!) {
+        removeNeededSkill(projectName: $projectName, description: $description, neededSkills: $neededSkills) {
             projectName
             description
             neededSkills {
