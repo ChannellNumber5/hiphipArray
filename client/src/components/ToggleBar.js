@@ -10,7 +10,8 @@ export default function ToggleBar() {
         <TabList mb="1em">
           <Tab
             _selected={{
-              color: "652CB3", //"652CB3",
+              color: "652CB3",
+              fontWeight:"bold",
               bg: "#EDDCFF",
               borderRight: "2px solid #652CB3",
               borderBottom: "2px solid #652CB3",
@@ -21,6 +22,7 @@ export default function ToggleBar() {
           <Tab
             _selected={{
               color: "652CB3",
+              fontWeight:"bold",
               bg: "#EDDCFF",
               borderLeft: "2px solid #652CB3",
               borderBottom: "2px solid #652CB3",
