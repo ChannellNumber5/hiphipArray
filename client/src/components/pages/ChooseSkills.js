@@ -12,6 +12,10 @@ import { Button, ButtonGroup } from "@chakra-ui/react";
 import { Heading } from "@chakra-ui/react";
 import { Container } from "@chakra-ui/react";
 
+// Query
+import { useQuery } from "@apollo/client";
+import { QUERY_ALL_SKILLS } from "../../utils/queries";
+
 export default function ChooseSkills() {
   const [userskills, addSkill] = useState([]);
 
@@ -19,32 +23,37 @@ export default function ChooseSkills() {
     addSkill((oldarray) => [...oldarray, event.target.value]);
   };
 
+  // Styling
   const styles = {
     buttonList: {
-      width: "50%",
-      marginBottom: ".5em",
+      marginBottom: ".9em",
+      flexDirection: "row",
+      flexWrap: "wrap",
+      // justifyContent: "space-evenly",
     },
     userList: {
       display: "flex",
       flexDirection: "row",
       flexWrap: "wrap",
-      marginBottom: ".5em",
+      marginTop: ".9em",
+      marginBottom: ".9em",
     },
     container: { display: "flex", flexDirection: "column" },
   };
+  // Styling
 
   return (
     <div>
-      <Container maxW="1000px">
+      <Container maxW="100%">
         <Heading color="#652CB3" marginBottom=".5em">
           Let's Create Your Profile!
         </Heading>
         <Heading color="#EDDCFF" as="h3" size="lg" marginBottom=".5em">
           What are your skills?
         </Heading>
-        <div style={styles.container}>
-          <div style={styles.buttonList}>
-            <ButtonGroup gap=".25" marginBottom=".5em">
+        <div>
+          <div style={styles.container}>
+            <ButtonGroup style={styles.buttonList}>
               <Button
                 bg="#A465FF"
                 color="white"
@@ -52,6 +61,16 @@ export default function ChooseSkills() {
                 onClick={handleChange}
                 value="HTML"
                 border="3px solid #652CB3"
+                marginTop=".5em"
+              ></Button>
+              {/* <Button
+                bg="#A465FF"
+                color="white"
+                variant="solid"
+                onClick={handleChange}
+                value="HTML"
+                border="3px solid #652CB3"
+                marginTop=".5em"
               >
                 HTML
               </Button>
@@ -61,6 +80,7 @@ export default function ChooseSkills() {
                 onClick={handleChange}
                 value="CSS"
                 border="3px solid #652CB3"
+                marginTop=".5em"
               >
                 CSS
               </Button>
@@ -71,6 +91,7 @@ export default function ChooseSkills() {
                 onClick={handleChange}
                 value="JavaScript"
                 border="3px solid #652CB3"
+                marginTop=".5em"
               >
                 JavaScript
               </Button>
@@ -81,6 +102,7 @@ export default function ChooseSkills() {
                 onClick={handleChange}
                 value="React"
                 border="3px solid #652CB3"
+                marginTop=".5em"
               >
                 React
               </Button>
@@ -91,6 +113,7 @@ export default function ChooseSkills() {
                 onClick={handleChange}
                 value="Python"
                 border="3px solid #652CB3"
+                marginTop=".5em"
               >
                 Python
               </Button>
@@ -102,6 +125,7 @@ export default function ChooseSkills() {
                 onClick={handleChange}
                 value="Node"
                 border="3px solid #652CB3"
+                marginTop=".5em"
               >
                 Node
               </Button>
@@ -112,6 +136,7 @@ export default function ChooseSkills() {
                 onClick={handleChange}
                 value="SQL"
                 border="3px solid #652CB3"
+                marginTop=".5em"
               >
                 SQL
               </Button>
@@ -122,6 +147,7 @@ export default function ChooseSkills() {
                 onClick={handleChange}
                 value="Angular"
                 border="3px solid #652CB3"
+                marginTop=".5em"
               >
                 Angular
               </Button>
@@ -132,6 +158,7 @@ export default function ChooseSkills() {
                 onClick={handleChange}
                 value="MongoDB"
                 border="3px solid #652CB3"
+                marginTop=".5em"
               >
                 MongoDB
               </Button>
@@ -142,6 +169,7 @@ export default function ChooseSkills() {
                 onClick={handleChange}
                 value="PHP"
                 border="3px solid #652CB3"
+                marginTop=".5em"
               >
                 PHP
               </Button>
@@ -152,6 +180,7 @@ export default function ChooseSkills() {
                 onClick={handleChange}
                 value="Jira"
                 border="3px solid #652CB3"
+                marginTop=".5em"
               >
                 Jira
               </Button>
@@ -162,6 +191,7 @@ export default function ChooseSkills() {
                 onClick={handleChange}
                 value="Java"
                 border="3px solid #652CB3"
+                marginTop=".5em"
               >
                 Java
               </Button>
@@ -172,6 +202,7 @@ export default function ChooseSkills() {
                 onClick={handleChange}
                 value="C++"
                 border="3px solid #652CB3"
+                marginTop=".5em"
               >
                 C++
               </Button>
@@ -182,6 +213,7 @@ export default function ChooseSkills() {
                 onClick={handleChange}
                 value="C#"
                 border="3px solid #652CB3"
+                marginTop=".5em"
               >
                 C#
               </Button>
@@ -192,6 +224,7 @@ export default function ChooseSkills() {
                 onClick={handleChange}
                 value="Swift"
                 border="3px solid #652CB3"
+                marginTop=".5em"
               >
                 Swift
               </Button>
@@ -202,6 +235,7 @@ export default function ChooseSkills() {
                 onClick={handleChange}
                 value="G0"
                 border="3px solid #652CB3"
+                marginTop=".5em"
               >
                 G0
               </Button>
@@ -212,6 +246,7 @@ export default function ChooseSkills() {
                 onClick={handleChange}
                 value="Ruby"
                 border="3px solid #652CB3"
+                marginTop=".5em"
               >
                 Ruby
               </Button>
@@ -222,9 +257,10 @@ export default function ChooseSkills() {
                 onClick={handleChange}
                 value="TypeScript"
                 border="3px solid #652CB3"
+                marginTop=".5em"
               >
                 TypeScript
-              </Button>
+              </Button> */}
             </ButtonGroup>
           </div>
 
@@ -235,6 +271,7 @@ export default function ChooseSkills() {
                   bg="#A465FF"
                   color="white"
                   border="3px solid #652CB3"
+                  marginTop=".5em"
                   marginRight=".5em"
                 >
                   <TagLabel>{skill}</TagLabel>
