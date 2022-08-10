@@ -16,7 +16,7 @@ const styles = {
   container: {
     display: "flex",
     maxWidth: "750px",
-    marginBottom: "20px"
+    marginBottom: "20px",
   },
   imageHolder: {
     flex: ".25",
@@ -58,7 +58,7 @@ export default function Card() {
 
               <Box as="h3" size="lg" ml="2">
                 <Heading color="#652CB3" as="h3" size="lg" mb="2">
-                Skill Prop
+                  Skill Prop
                 </Heading>
                 <Tag
                   bg="#A465FF"
