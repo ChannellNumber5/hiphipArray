@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 // Pages
+import NavTabs from "../components/NavTabs"
 import Welcome from "./pages/Welcome";
 import Signup from "./pages/SignUp";
 import Login from "./pages/Login";
@@ -18,6 +19,7 @@ export default function Container() {
   return (
     <Router>
       <div>
+        <NavTabs></NavTabs>
         <Routes>
           <Route path="/" element={<Welcome />} />
           <Route path="/signup" element={<Signup />} />
