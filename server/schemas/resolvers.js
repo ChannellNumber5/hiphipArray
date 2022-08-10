@@ -166,20 +166,38 @@ const resolvers = {
     // find a user who has a project we are looking for and then update the neededskills array by selecting new skills and adding by their ID
     addNeededSkill: async (parent, { projectId, skillId }, context) => {
       if (context.user) {
+        const skill = await Skill.findOneAndUpdate({
+          _id: skillId,
+        });
+
         await Project.findOneAndUpdate(
           { _id: projectId },
-          { $addToSet: {neededSkills: skillId} } 
+          { $addToSet: { neededSkills: skill._id } },
+          {
+            new: true,
+            runValidators: true,
+          }
         );
+
+        return skill;
       }
+      throw new AuthenticationError("You need to be logged in!");
     },
     // find a user who has a project we are looking for and then update the neededskills array by selecting new skills and adding by their ID
-    removeNeededSkill: async (parent, { projectId, skillId }, context) => {
+    removeNeededSkill: async (parent, { skillId }, context) => {
       if (context.user) {
+        const skill = await Skill.findOneAndUpdate({
+          _id: skillId,
+        });
+
         await Project.findOneAndUpdate(
-          { _id },
-          { $pull: { neededSkills: neededSkills } }
+          { _id: context.user._id },
+          { $pull: { neededSkills: skill._id } }
         );
+
+        return skill;
       }
+      throw new AuthenticationError("You need to be logged in!");
     },
   },
 };
