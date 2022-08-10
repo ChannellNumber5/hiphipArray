@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 import { useQuery } from '@apollo/client';
 import { QUERY_ME, QUERY_USER } from "../../utils/queries";
-import React from "react";
 import { Box } from "@chakra-ui/react";
 import { Heading } from "@chakra-ui/react";
 import {
@@ -79,7 +78,7 @@ export default function Profile() {
                   ml="2"
                   mb="4"
                 >
-                  <Heading color="#652CB3">John Doe</Heading>
+                  <Heading color="#652CB3">{user.username}</Heading>
                 </Box>
               </Box>
 
