@@ -23,6 +23,7 @@ const typeDefs = gql`
     description: String
     teamLead: User
     neededSkills: [Skill]
+    teammates: [User]
   }
 
   type Auth {

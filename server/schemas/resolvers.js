@@ -3,6 +3,48 @@ const { User, Skill, Project } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
+  // User: {
+  //   username: (parent, {username}) => {
+  //     return username;
+  //   },
+  //   email: (parent, {email}) => {
+  //     return email;
+  //   },
+  //   description: (parent, {description}) => {
+  //     return description;
+  //   },
+  //   skills: (parent, {skills}) => {
+  //     return skills;
+  //   },
+  //   projects: (parent, {projects}) => {
+  //     return projects;
+  //   },
+  // },
+  // Skill: {
+  //   skillName: (parent, {skillName}) =>{
+  //     return skillName;
+  //   },
+  //   description: (parent, {description}) => {
+  //     return description;
+  //   }
+  // },
+  // Project: {
+  //   projectName: (parent, {projectName}) => {
+  //     return projectName;
+  //   },
+  //   description: (parent, {description}) => {
+  //     return description;
+  //   },
+  //   teamLead: (parent, {teamLead}) => {
+  //     return teamLead;
+  //   },
+  //   neededSkills: (parent, {neededSkills}) => {
+  //     return neededSkills;
+  //   },
+  //   teammates: (parent, {teammates}) => {
+  //     return teammates;
+  //   }
+  // },
   Query: {
     users: async () => {
       return User.find().populate('skills');
@@ -25,10 +67,9 @@ const resolvers = {
       return Project.findOne({ _id: projectId });
     },
     me: async (parent, args, context) => {
-      console.log("context:" + context);
       if (context.user) {
-        console.log(context.user);
-        return User.findOne({ _id: context.user._id }).populate('skills', 'projects');
+        return User.findOne({ _id: context.user._id })
+        // .populate('skills', 'projects');
       }
       throw new AuthenticationError('You need to be logged in!');
     },

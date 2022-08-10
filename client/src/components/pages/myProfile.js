@@ -23,7 +23,7 @@ export default function Profile() {
       <h2>Your Skills</h2>
       {user.skills.map((skill) => (
         <div key={skill._id}>
-          <h3>{skill._id}</h3>
+          <h3>{skill.skillName}</h3>
         </div>
       ))}
       </>
