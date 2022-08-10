@@ -2,7 +2,7 @@ import decode from 'jwt-decode';
 
 class AuthService {
     getProfile() {
-        return decode(this.getToken()); //decodes the token that is created when a new user is created/added to the appliation
+        return decode(this.getToken()); //decodes the token that is created when a new user is created/added to the application
     }
 
     loggedIn() {

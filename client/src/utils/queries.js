@@ -104,3 +104,20 @@ export const QUERY_PROJECT= gql`
         }
     }
 `;
+
+export const QUERY_ME = gql`
+    query me {
+        me {
+            _id
+            username
+            skills {
+				_id
+                skillName
+			}
+            projects {
+                _id
+                projectName
+            }
+        }
+    }
+`;

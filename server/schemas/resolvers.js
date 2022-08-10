@@ -25,7 +25,9 @@ const resolvers = {
       return Project.findOne({ _id: projectId });
     },
     me: async (parent, args, context) => {
+      console.log("context:" + context);
       if (context.user) {
+        console.log(context.user);
         return User.findOne({ _id: context.user._id }).populate('skills', 'projects');
       }
       throw new AuthenticationError('You need to be logged in!');
