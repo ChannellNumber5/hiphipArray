@@ -44,7 +44,7 @@ export default function Profile() {
     
   return (
     <div>
-      {user ? ( 
+      {/* {user ? ( 
         <>
       <h1>{user.username}'s Profile</h1>
       <h2>Your Skills</h2>
@@ -55,7 +55,7 @@ export default function Profile() {
       ))}
       </>
       ): 
-      <div> Loading... </div>}
+      <div> Loading... </div>} */}
       <Container maxW="1000px">
         <Heading color="#652CB3">My Profile</Heading>
         <div style={styles.container}>
@@ -68,42 +68,61 @@ export default function Profile() {
             borderRadius="lg"
             overflow="hidden"
           >
+          {loading ? (
+            <Box display="flex" alignItems="baseline">
+            <Box
+              color="purple"
+              fontWeight="semibold"
+              letterSpacing="wide"
+              fontSize="m"
+              ml="2"
+              mb="4"
+            >
+              <Heading color="#652CB3">Loading...</Heading>
+            </Box>
+          </Box>
+            ) : 
             <Box p="6">
-              <Box display="flex" alignItems="baseline">
-                <Box
-                  color="purple"
-                  fontWeight="semibold"
-                  letterSpacing="wide"
-                  fontSize="m"
-                  ml="2"
-                  mb="4"
-                >
-                  <Heading color="#652CB3">{user.username}</Heading>
-                </Box>
-              </Box>
-
-              <Box as="h3" size="lg" ml="2">
-                <Heading color="#652CB3" as="h3" size="lg" mb="2">
-                  My Skills
-                </Heading>
-                <Tag
-                  bg="#A465FF"
-                  color="white"
-                  border="3px solid #652CB3"
-                  marginRight=".5em"
-                >
-                  <TagLabel>Sample Skill</TagLabel>
-                </Tag>
-                <Tag
-                  bg="#A465FF"
-                  color="white"
-                  border="3px solid #652CB3"
-                  marginRight=".5em"
-                >
-                  <TagLabel>Sample Skill</TagLabel>
-                </Tag>
+            <Box display="flex" alignItems="baseline">
+              <Box
+                color="purple"
+                fontWeight="semibold"
+                letterSpacing="wide"
+                fontSize="m"
+                ml="2"
+                mb="4"
+              >
+                <Heading color="#652CB3">{user.username}</Heading>
               </Box>
             </Box>
+
+            <Box as="h3" size="lg" ml="2">
+              <Heading color="#652CB3" as="h3" size="lg" mb="2">
+                My Skills
+              </Heading>
+              {/* {user.skills.map((skill) => {
+                return(
+                <Tag
+                  bg="#A465FF"
+                  color="white"
+                  border="3px solid #652CB3"
+                  marginRight=".5em"
+                >
+                  <TagLabel>{skill.skillName}</TagLabel>
+                </Tag>
+              )
+              })} */}
+              {/* <Tag
+                bg="#A465FF"
+                color="white"
+                border="3px solid #652CB3"
+                marginRight=".5em"
+              >
+                <TagLabel>Sample Skill</TagLabel>
+              </Tag> */}
+            </Box>
+          </Box>
+          }
           </Box>
         </div>
       </Container>
