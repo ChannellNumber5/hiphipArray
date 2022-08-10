@@ -41,10 +41,7 @@ export default function NavTabs() {
     <Link to="/CreateProfile">Create Profile</Link>
     </MenuItem>
     <MenuItem>
-    <Link to="/Projects">Find Projects</Link>
-    </MenuItem>
-    <MenuItem>
-    <Link to="/Arrayers">Find Arrayers</Link>
+    <Link to="/Search">Search</Link>
     </MenuItem>
     <MenuItem>
     <Link to="/Requests">My Requests</Link>

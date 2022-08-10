@@ -1,6 +1,5 @@
 import React from "react";
 // Components
-import Card from "../Card"
 import ToggleBar from "../ToggleBar";
 
 export default function Arrayers() {
