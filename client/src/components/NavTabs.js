@@ -8,7 +8,6 @@ import {
   MenuList,
   MenuItem,
 } from '@chakra-ui/react'
-
 import { Link } from "react-router-dom";
 
 export default function NavTabs() {
@@ -17,11 +16,10 @@ export default function NavTabs() {
       <Flex
         bg="black"
         w="100%"
-        p={4}
+        p={3}
         color="#A465FF"
         fontSize="40px"
         fontWeight="bold"
-        justifyContent="space-between"
       >
         <Box>
           <div>Collabarray [ ]</div>
@@ -38,6 +36,9 @@ export default function NavTabs() {
   <MenuList>
     <MenuItem>
     <Link to="/myprofile">My Profile</Link>
+    </MenuItem>
+    <MenuItem>
+    <Link to="/CreateProfile">Create Profile</Link>
     </MenuItem>
     <MenuItem>
     <Link to="/Projects">Find Projects</Link>
