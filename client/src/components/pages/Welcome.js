@@ -12,15 +12,14 @@ import {
   Wrap,
   WrapItem,
   Stack,
-  IconButton
+  IconButton,
 } from "@chakra-ui/react";
+import pic from "../../assets/Collaboray.jpg";
 
 export default function Welcome() {
   return (
     <div>
       <p>
-
-
         <Flex
           direction="column"
           background="white"
@@ -28,10 +27,10 @@ export default function Welcome() {
           minWidth="max-content"
           alignItems="center"
         >
-          <Heading color="#A465FF" mb={6}>
+          {/* <Heading color="#A465FF" mb={6}>
             A Space To Create
-          </Heading>
-          <Heading color="#A465FF">[ ]</Heading>
+          </Heading> */}
+          <img src={pic} alt="mypic" />
           <Wrap>
             <WrapItem>
               <Link to="/login">
