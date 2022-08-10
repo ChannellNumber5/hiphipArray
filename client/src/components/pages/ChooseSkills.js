@@ -12,6 +12,10 @@ import { Button, ButtonGroup } from "@chakra-ui/react";
 import { Heading } from "@chakra-ui/react";
 import { Container } from "@chakra-ui/react";
 
+// Query
+import { useQuery } from "@apollo/client";
+import { QUERY_ALL_SKILLS } from "../../utils/queries";
+
 export default function ChooseSkills() {
   const [userskills, addSkill] = useState([]);
 
@@ -19,13 +23,13 @@ export default function ChooseSkills() {
     addSkill((oldarray) => [...oldarray, event.target.value]);
   };
 
+  // Styling
   const styles = {
     buttonList: {
       marginBottom: ".9em",
       flexDirection: "row",
       flexWrap: "wrap",
       // justifyContent: "space-evenly",
-      marginBottom: ".5em",
     },
     userList: {
       display: "flex",
@@ -34,8 +38,9 @@ export default function ChooseSkills() {
       marginTop: ".9em",
       marginBottom: ".9em",
     },
-    container: { display: "flex", flexDirection: "column"},
+    container: { display: "flex", flexDirection: "column" },
   };
+  // Styling
 
   return (
     <div>
@@ -48,8 +53,17 @@ export default function ChooseSkills() {
         </Heading>
         <div>
           <div style={styles.container}>
-            <ButtonGroup gap=".25" marginBottom=".5em" style={styles.buttonList}>
+            <ButtonGroup style={styles.buttonList}>
               <Button
+                bg="#A465FF"
+                color="white"
+                variant="solid"
+                onClick={handleChange}
+                value="HTML"
+                border="3px solid #652CB3"
+                marginTop=".5em"
+              ></Button>
+              {/* <Button
                 bg="#A465FF"
                 color="white"
                 variant="solid"
@@ -246,7 +260,7 @@ export default function ChooseSkills() {
                 marginTop=".5em"
               >
                 TypeScript
-              </Button>
+              </Button> */}
             </ButtonGroup>
           </div>
 
