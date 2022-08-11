@@ -60,6 +60,24 @@ export const REMOVE_SKILL = gql`
     }
 `;
 
+export const ADD_USER_SKILL = gql`
+    mutation addUserSkill($skillId: ID!) {
+        addUserSkill(_id: $skillId) {
+            skillName
+            description
+        }
+    }
+`;
+
+export const REMOVE_USER_SKILL = gql`
+    mutation removeUserSkill($skillId: ID!) {
+        removeUserSkill(_id: $skillId) {
+            skillName
+            description
+        }
+    }
+`;
+
 export const ADD_PROJECT = gql`
     mutation addProject($projectName: String!, $description: String!, $teamLead: String!) {
         addProject(projectName: $projectName, description: $description, teamLead: $teamLead) {
@@ -86,7 +104,7 @@ export const REMOVE_PROJECT = gql`
 `;
 
 export const UPDATE_PROJECT = gql`
-    mutation updateProject($projectName: String!, $description: String!, $teamLead: String!, $neededSkills:[Skill], $teammates:[User]) {
+    mutation updateProject($projectName: String, $description: String, $teamLead: String, $neededSkills:[Skill], $teammates:[User]) {
         updateProject(projectName: $projectName, description: $description, teamLead: $teamLead, neededSkills: $neededSkills, teammates:$teammates) {
             projectName
             description
@@ -107,3 +125,28 @@ export const UPDATE_PROJECT = gql`
         }
     }
 `;
+
+// Not sure if UPDATE_PROJECT could handle this but wasn't sure how the resolver would be typed out
+export const ADD_NEEDED_SKILL = gql `
+    mutation addNeededSkill($projectName: String, $description: String $neededSkills: [ID]!) {
+        addNeededSkill(projectName: $projectName, description: $description, neededSkills: $neededSkills) {
+            projectName
+            description
+            neededSkills {
+                _id
+            }
+        }
+    }
+`
+// Not sure if UPDATE_PROJECT could handle this but wasn't sure how the resolver would be typed out
+export const REMOVE_NEEDED_SKILL = gql `
+    mutation removeNeededSkill($projectName: String, $description: String $neededSkills: [ID]!) {
+        removeNeededSkill(projectName: $projectName, description: $description, neededSkills: $neededSkills) {
+            projectName
+            description
+            neededSkills {
+                _id
+            }
+        }
+    }
+`
