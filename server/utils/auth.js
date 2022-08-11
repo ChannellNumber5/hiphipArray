@@ -12,7 +12,6 @@ module.exports = {
         if (req.headers.authorization) {
             token = token.split(' ').pop().trim(); //takes just the first part of the token splitting it into an array based on spaces, taking the last item of the array and then trimming off any spaces at the end of that element
         }
-        console.log("token: " + token);
         if (!token) {
             return req;
         }
