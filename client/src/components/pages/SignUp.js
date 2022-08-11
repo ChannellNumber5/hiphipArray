@@ -107,7 +107,7 @@ function Signup(props) {
               onChange={handleChange}
               value={formState.password}
             />
-            <Button colorScheme="purple" variant="solid">
+            <Button bg="#A465FF" color="white" border="1px" variant="solid">
               Sign Up
             </Button>
           </Flex>
