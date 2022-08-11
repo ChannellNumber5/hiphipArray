@@ -8,6 +8,7 @@ export const QUERY_USERS = gql`
       description
       skills {
         _id
+        skillName
       }
     }
   }
