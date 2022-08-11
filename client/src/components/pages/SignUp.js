@@ -1,70 +1,120 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function SignUp() {
-  // Create state variables for the fields in the form
-  // We are also setting their initial values to an empty string
-  const [email, setEmail] = useState("");
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
+import { useMutation } from "@apollo/client";
+import Auth from "../../utils/auth";
+import { ADD_USER } from "../../utils/mutations";
+import {
+  Button,
+  ButtonGroup,
+  Flex,
+  Spacer,
+  Box,
+  Heading,
+  Input,
+  Stack,
+  IconButton,
+} from "@chakra-ui/react";
 
-  const handleInputChange = (e) => {
-    // Getting the value and name of the input which triggered the change
-    const { target } = e;
-    const inputType = target.name;
-    const inputValue = target.value;
-
-    // Based on the input type, we set the state of either email, username, and password
-    if (inputType === "email") {
-      setEmail(inputValue);
-    } else if (inputType === "userName") {
-      setUserName(inputValue);
-    } else {
-      setPassword(inputValue);
-    }
+function Signup(props) {
+  const [formState, setFormState] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+  const [addUser] = useMutation(ADD_USER);
+  console.log(formState);
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    const mutationResponse = await addUser({
+      variables: {
+        username: formState.username,
+        email: formState.email,
+        password: formState.password,
+      },
+    });
+    const token = mutationResponse.data.addUser.token;
+    Auth.login(token);
   };
 
-  const handleFormSubmit = (e) => {
-    // Preventing the default behavior of the form submit (which is to refresh the page)
-    e.preventDefault();
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
   };
 
   return (
-    <div>
-      <h1>Sign up</h1>
+    <div className="container my-1">
+      <Link to="/login">← Go to Login</Link>
 
-      <div>
-        <p>Hello {userName}</p>
-        <form className="form">
-          <input
-            value={email}
-            name="email"
-            onChange={handleInputChange}
-            type="email"
-            placeholder="email"
-          />
-          <input
-            value={userName}
-            name="userName"
-            onChange={handleInputChange}
-            type="text"
-            placeholder="username"
-          />
-          <input
-            value={password}
-            name="password"
-            onChange={handleInputChange}
-            type="password"
-            placeholder="Password"
-          />
-          <Link to="/chooseskills">
-            <button type="button">
-              {/* <button type="button" onClick={handleFormSubmit}> */}
-              Submit
-            </button>
-          </Link>
-        </form>
-      </div>
+      <form onSubmit={handleFormSubmit}>
+        <Flex height="100vh" alignItems="center" justifyContent="center">
+          <Flex
+            direction="column"
+            background="purple.100"
+            border="1px"
+            borderColor="#A465FF"
+            p={12}
+            rounded={16}
+          >
+            <Heading color="#A465FF" mb={6}>
+              Sign Up
+            </Heading>
+            <Input
+              placeholder="USERNAME"
+              variant="filled"
+              color="white"
+              background="white"
+              _placeholder={{ color: "#A465FF" }}
+              border="1px"
+              borderColor="#A465FF"
+              mb={3}
+              name="username"
+              type="username"
+              id="username"
+              onChange={handleChange}
+              value={formState.username}
+            />
+            <Input
+              placeholder="EMAIL"
+              variant="filled"
+              color="white"
+              background="white"
+              _placeholder={{ color: "purple.500" }}
+              border="1px"
+              borderColor="purple.500"
+              mb={3}
+              name="email"
+              type="email"
+              id="email"
+              onChange={handleChange}
+              value={formState.email}
+            />
+            <Input
+              placeholder="PASSWORD"
+              variant="filled"
+              color="white"
+              background="white"
+              _placeholder={{ color: "purple.500" }}
+              border="1px"
+              borderColor="purple.500"
+              mb={3}
+              name="password"
+              type="password"
+              id="pwd"
+              onChange={handleChange}
+              value={formState.password}
+            />
+            <Button colorScheme="purple" variant="solid" type="submit">
+              Sign Up
+            </Button>
+          </Flex>
+        </Flex>
+      </form>
     </div>
   );
 }
+
+export default Signup;

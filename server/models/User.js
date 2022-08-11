@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const bcrypt = require('bcrypt');
-const { Project } = require('./Project');
-const { Skill } = require('./Skill');
+// const { Project } = require('./Project');
+// const { Skill } = require('./Skill');
 
 const userSchema = new Schema({
     username:{
@@ -24,14 +24,14 @@ const userSchema = new Schema({
     },
     description:{
         type: String,
-        required: true,
+        // required: true,
         trim: true
     },
     skills:[
         {
         type: Schema.Types.ObjectId,
         ref: 'Skill'
-        },
+        }
     ],
     projects:[
         {
