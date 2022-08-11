@@ -5,6 +5,7 @@ export const QUERY_USERS = gql`
         users {
             username
             skills{
+                _id
                 skillName
                 description
             }
@@ -12,11 +13,13 @@ export const QUERY_USERS = gql`
                 projectName
                 description
                 skills {
+                    _id
                     skillName
                 }
                 teammates {
                     username
                     skills {
+                        _id
                         skillName
                     }
                 }
@@ -30,7 +33,9 @@ export const QUERY_USER = gql`
     {
         user(_id: $userId) {
             username
-            skills{
+            email
+            skills {
+                _id
                 skillName
                 description
             }
@@ -38,11 +43,13 @@ export const QUERY_USER = gql`
                 projectName
                 description
                 skills {
+                    _id
                     skillName
                 }
                 teammates {
                     username
                     skills {
+                        _id
                         skillName
                     }
                 }
@@ -68,7 +75,10 @@ export const QUERY_ALL_SKILLS = gql`
 export const QUERY_USERS_BY_SKILLS = gql`
     query getUsersBySkill($skill: ID) {
         skills(_id: $skill) {
-            users
+            users {
+                _id
+                username
+            }
         }
     }
 `;
@@ -79,9 +89,18 @@ export const QUERY_PROJECTS= gql`
             _id
             projectName
             description
-            skills {
+            teamLead
+            neededSkills {
                 _id
                 skillName
+            }
+            teammates {
+                _id
+                username
+                skills {
+                    _id
+                    skillName
+                }
             }
         }
     }
@@ -93,13 +112,36 @@ export const QUERY_PROJECT= gql`
             _id
             projectName
             description
-            skills {
+            teamLead
+            neededSkills {
                 _id
                 skillName
             }
             teammates {
                 _id
                 username
+                skills {
+                    _id
+                    skillName
+                }
+            }
+        }
+    }    
+`;
+
+export const QUERY_ME = gql`
+    query me {
+        me {
+            _id
+            username
+            email
+            skills {
+				_id
+                skillName
+			}
+            projects {
+                _id
+                projectName
             }
         }
     }
