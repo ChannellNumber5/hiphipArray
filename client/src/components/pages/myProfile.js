@@ -99,19 +99,20 @@ export default function Profile() {
             <Box as="h3" size="lg" ml="2">
               <Heading color="#652CB3" as="h3" size="lg" mb="2">
                 My Skills
-              </Heading>
-              {/* {user.skills.map((skill) => {
+              </Heading> 
+              {user != '' && user.skills.map((skill) => {
                 return(
                 <Tag
                   bg="#A465FF"
                   color="white"
                   border="3px solid #652CB3"
                   marginRight=".5em"
+                  key = {skill._id}
                 >
                   <TagLabel>{skill.skillName}</TagLabel>
                 </Tag>
               )
-              })} */}
+              })}
               {/* <Tag
                 bg="#A465FF"
                 color="white"
