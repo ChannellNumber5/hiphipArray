@@ -3,7 +3,11 @@ import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 // Components
 import Card from "../components/Card";
 
-export default function ToggleBar() {
+const ToggleBar = ({users}) => {
+  if(!users.length) {
+    return <h3>No Arrayers Yet</h3>;
+  }
+
   return (
     <div>
       <Tabs isFitted variant="unstyled" colorScheme="#EDDCFF" size="lg">
@@ -44,14 +48,20 @@ export default function ToggleBar() {
             <Card></Card>
             {/* Make This An Array */}
           </TabPanel>
+
           <TabPanel>
-            {/* Make This An Array */}
-            <Card></Card>
-            <Card></Card>
-            {/* Make This An Array */}
+            {users &&
+            users.map((user) =>(
+              <Card key={user._id}>
+                {user.description}
+                {user.skills}
+              </Card>
+            ))}
           </TabPanel>
         </TabPanels>
       </Tabs>
     </div>
   );
 }
+
+export default ToggleBar;
