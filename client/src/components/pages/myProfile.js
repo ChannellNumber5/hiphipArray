@@ -34,7 +34,6 @@ const styles = {
 export default function Profile() {
   const [user, setUser] = useState("");
   const { data, loading } = useQuery(QUERY_ME);
-  console.log("data: ", {data});
 
   useEffect(() => {
     if (data) {
