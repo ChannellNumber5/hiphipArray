@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 import { useMutation } from "@apollo/client";
 import Auth from "../../utils/auth";
@@ -17,13 +17,13 @@ import {
 } from "@chakra-ui/react";
 
 function Signup(props) {
+  const navigate = useNavigate();
   const [formState, setFormState] = useState({
     username: "",
     email: "",
     password: "",
   });
   const [addUser] = useMutation(ADD_USER);
-  console.log(formState);
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     const mutationResponse = await addUser({
@@ -35,6 +35,7 @@ function Signup(props) {
     });
     const token = mutationResponse.data.addUser.token;
     Auth.login(token);
+    navigate('/myprofile');
   };
 
   const handleChange = (event) => {
