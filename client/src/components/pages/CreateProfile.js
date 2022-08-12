@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   FormControl,
   FormLabel,
@@ -19,8 +19,9 @@ import {
 } from "@chakra-ui/react";
 
 // Query
-import { useQuery } from "@apollo/client";
-import { QUERY_ALL_SKILLS } from "../../utils/queries";
+import { useQuery, useMutation } from "@apollo/client";
+import { QUERY_ALL_SKILLS, QUERY_SKILLS_AND_USER } from "../../utils/queries";
+import { UPDATE_USER } from '../../utils/mutations'
 
 const styles = {
   textareaStyle: {
@@ -46,8 +47,14 @@ const styles = {
 export default function CreateProfile() {
   const [userskills, addSkill] = useState([]);
 
+  const [skillsToAdd, addUserSkill] = useState([]);
+  const {data, loading, error } = useQuery(QUERY_SKILLS_AND_USER);
+  const [updateUser] = useMutation(UPDATE_USER);
+  const navigate = useNavigate();
+
   const handleChange = (event) => {
     addSkill((oldarray) => [...oldarray, event.target.value]);
+    addUserSkill((prevarray) => [...prevarray, event.target.id]);
   };
 
   const [name, setName] = useState("");
@@ -66,6 +73,25 @@ export default function CreateProfile() {
       setDescription(inputValue);
     }
   };
+
+  const submitSkills = async (event) => {
+    event.preventDefault();
+    console.log(skillsToAdd);
+  
+    try {
+      const mutationResponse = await updateUser({
+        variables: {
+          skills: skillsToAdd
+        }
+      });
+      
+      navigate('/myprofile');
+    
+
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   return (
     <div>
@@ -126,213 +152,21 @@ export default function CreateProfile() {
           <div>
             <div style={styles.container}>
               <ButtonGroup style={styles.buttonList} maxW="55%">
-                <Button
-                  bg="#A465FF"
-                  color="white"
-                  variant="solid"
-                  onClick={handleChange}
-                  value="HTML"
-                  border="3px solid #652CB3"
-                  marginTop=".5em"
-                ></Button>
-                {/* <Button
-                  bg="#A465FF"
-                  color="white"
-                  variant="solid"
-                  onClick={handleChange}
-                  value="HTML"
-                  border="3px solid #652CB3"
-                  marginTop=".5em"
-                >
-                  HTML
-                </Button>
-                <Button
-                  bg="#A465FF"
-                  color="white"
-                  onClick={handleChange}
-                  value="CSS"
-                  border="3px solid #652CB3"
-                  marginTop=".5em"
-                >
-                  CSS
-                </Button>
-                <Button
-                  bg="#A465FF"
-                  color="white"
-                  variant="solid"
-                  onClick={handleChange}
-                  value="JavaScript"
-                  border="3px solid #652CB3"
-                  marginTop=".5em"
-                >
-                  JavaScript
-                </Button>
-                <Button
-                  bg="#A465FF"
-                  color="white"
-                  variant="solid"
-                  onClick={handleChange}
-                  value="React"
-                  border="3px solid #652CB3"
-                  marginTop=".5em"
-                >
-                  React
-                </Button>
-                <Button
-                  bg="#A465FF"
-                  color="white"
-                  variant="solid"
-                  onClick={handleChange}
-                  value="Python"
-                  border="3px solid #652CB3"
-                  marginTop=".5em"
-                >
-                  Python
-                </Button>
-                <Button
-                  bg="#A465FF"
-                  color="white"
-                  variant="solid"
-                  n
-                  onClick={handleChange}
-                  value="Node"
-                  border="3px solid #652CB3"
-                  marginTop=".5em"
-                >
-                  Node
-                </Button>
-                <Button
-                  bg="#A465FF"
-                  color="white"
-                  variant="solid"
-                  onClick={handleChange}
-                  value="SQL"
-                  border="3px solid #652CB3"
-                  marginTop=".5em"
-                >
-                  SQL
-                </Button>
-                <Button
-                  bg="#A465FF"
-                  color="white"
-                  variant="solid"
-                  onClick={handleChange}
-                  value="Angular"
-                  border="3px solid #652CB3"
-                  marginTop=".5em"
-                >
-                  Angular
-                </Button>
-                <Button
-                  bg="#A465FF"
-                  color="white"
-                  variant="solid"
-                  onClick={handleChange}
-                  value="MongoDB"
-                  border="3px solid #652CB3"
-                  marginTop=".5em"
-                >
-                  MongoDB
-                </Button>
-                <Button
-                  bg="#A465FF"
-                  color="white"
-                  variant="solid"
-                  onClick={handleChange}
-                  value="PHP"
-                  border="3px solid #652CB3"
-                  marginTop=".5em"
-                >
-                  PHP
-                </Button>
-                <Button
-                  bg="#A465FF"
-                  color="white"
-                  variant="solid"
-                  onClick={handleChange}
-                  value="Jira"
-                  border="3px solid #652CB3"
-                  marginTop=".5em"
-                >
-                  Jira
-                </Button>
-                <Button
-                  bg="#A465FF"
-                  color="white"
-                  variant="solid"
-                  onClick={handleChange}
-                  value="Java"
-                  border="3px solid #652CB3"
-                  marginTop=".5em"
-                >
-                  Java
-                </Button>
-                <Button
-                  bg="#A465FF"
-                  color="white"
-                  variant="solid"
-                  onClick={handleChange}
-                  value="C++"
-                  border="3px solid #652CB3"
-                  marginTop=".5em"
-                >
-                  C++
-                </Button>
-                <Button
-                  bg="#A465FF"
-                  color="white"
-                  variant="solid"
-                  onClick={handleChange}
-                  value="C#"
-                  border="3px solid #652CB3"
-                  marginTop=".5em"
-                >
-                  C#
-                </Button>
-                <Button
-                  bg="#A465FF"
-                  color="white"
-                  variant="solid"
-                  onClick={handleChange}
-                  value="Swift"
-                  border="3px solid #652CB3"
-                  marginTop=".5em"
-                >
-                  Swift
-                </Button>
-                <Button
-                  bg="#A465FF"
-                  color="white"
-                  variant="solid"
-                  onClick={handleChange}
-                  value="G0"
-                  border="3px solid #652CB3"
-                  marginTop=".5em"
-                >
-                  G0
-                </Button>
-                <Button
-                  bg="#A465FF"
-                  color="white"
-                  variant="solid"
-                  onClick={handleChange}
-                  value="Ruby"
-                  border="3px solid #652CB3"
-                  marginTop=".5em"
-                >
-                  Ruby
-                </Button>
-                <Button
-                  bg="#A465FF"
-                  color="white"
-                  variant="solid"
-                  onClick={handleChange}
-                  value="TypeScript"
-                  border="3px solid #652CB3"
-                  marginTop=".5em"
-                >
-                  TypeScript
-                </Button> */}
+                {data !== " " && data?.skills.map((skill) => {
+                  return (
+                    <Button
+                    bg="#A465FF"
+                    color="white"
+                    variant="solid"
+                    onClick={handleChange}
+                    key={skill._id}
+                    id={skill._id}
+                    value={skill.skillName}
+                    border="3px solid #652CB3"
+                    marginTop=".5em"
+                  >{skill.skillName}</Button>
+                  )
+                })}
               </ButtonGroup>
             </div>
 
@@ -345,26 +179,26 @@ export default function CreateProfile() {
                     border="3px solid #652CB3"
                     marginTop=".5em"
                     marginRight=".5em"
+                    key={skill._id}
                   >
-                    <TagLabel>{skill}</TagLabel>
+                    <TagLabel key={skill._id}>{skill}</TagLabel>
                     <TagCloseButton></TagCloseButton>
                   </Tag>
                 );
               })}
             </div>
             <p>
-              <Link to="/myprofile">
                 <Button
                   bg="#A465FF"
                   color="white"
                   variant="solid"
                   border="3px solid #652CB3"
+                  onClick={submitSkills}
                 >
                   <Heading as="h5" size="lg">
                     Finish Profile
                   </Heading>
                 </Button>
-              </Link>
             </p>
           </div>
         </Container>
