@@ -173,9 +173,10 @@ export default function CreateProject() {
                 color="white"
                 variant="solid"
                 border="3px solid #652CB3"
+                type="submit"
               >
                 <Heading as="h5" size="lg">
-                  Create Project
+                  <Link to="/project">Create Project</Link>
                 </Heading>
               </Button>
             </p>

@@ -34,6 +34,9 @@ export default function NavTabs() {
                 <Link to="/myprofile">My Profile</Link>
               </MenuItem>
               <MenuItem>
+                <Link to="/project">My Projects</Link>
+              </MenuItem>
+              <MenuItem>
                 <Link to="/CreateProfile">Create Profile</Link>
               </MenuItem>
               <MenuItem>
