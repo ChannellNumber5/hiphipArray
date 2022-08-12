@@ -48,8 +48,6 @@ function Signup(props) {
 
   return (
     <div className="container my-1">
-      <Link to="/login">← Go to Login</Link>
-
       <form onSubmit={handleFormSubmit}>
         <Flex height="100vh" alignItems="center" justifyContent="center">
           <Flex
@@ -66,7 +64,7 @@ function Signup(props) {
             <Input
               placeholder="USERNAME"
               variant="filled"
-              color="white"
+              color="black"
               background="white"
               _placeholder={{ color: "#A465FF" }}
               border="1px"
@@ -81,7 +79,7 @@ function Signup(props) {
             <Input
               placeholder="EMAIL"
               variant="filled"
-              color="white"
+              color="black"
               background="white"
               _placeholder={{ color: "purple.500" }}
               border="1px"
@@ -96,7 +94,7 @@ function Signup(props) {
             <Input
               placeholder="PASSWORD"
               variant="filled"
-              color="white"
+              color="black"
               background="white"
               _placeholder={{ color: "purple.500" }}
               border="1px"
@@ -108,8 +106,11 @@ function Signup(props) {
               onChange={handleChange}
               value={formState.password}
             />
-            <Button colorScheme="purple" variant="solid" type="submit">
+            <Button colorScheme="purple" variant="solid" type="submit" marginBottom="7px">
               Sign Up
+            </Button>
+            <Button colorScheme="purple" variant="solid" type="submit">
+            <Link to="/login">← Go to Login</Link>
             </Button>
           </Flex>
         </Flex>
