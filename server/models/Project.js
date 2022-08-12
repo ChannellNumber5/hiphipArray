@@ -23,7 +23,7 @@ const projectSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Skill'
         }],
-    teammates:[        {
+    teammates:[{
         type: Schema.Types.ObjectId,
         ref: 'User'
         }]

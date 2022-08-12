@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 import { useMutation } from "@apollo/client";
 import Auth from "../../utils/auth";
@@ -17,13 +17,13 @@ import {
 } from "@chakra-ui/react";
 
 function Signup(props) {
+  const navigate = useNavigate();
   const [formState, setFormState] = useState({
     username: "",
     email: "",
     password: "",
   });
   const [addUser] = useMutation(ADD_USER);
-  console.log(formState);
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     const mutationResponse = await addUser({
@@ -35,6 +35,7 @@ function Signup(props) {
     });
     const token = mutationResponse.data.addUser.token;
     Auth.login(token);
+    navigate('/myprofile');
   };
 
   const handleChange = (event) => {
@@ -47,8 +48,6 @@ function Signup(props) {
 
   return (
     <div className="container my-1">
-      <Link to="/login">← Go to Login</Link>
-
       <form onSubmit={handleFormSubmit}>
         <Flex height="100vh" alignItems="center" justifyContent="center">
           <Flex
@@ -65,7 +64,7 @@ function Signup(props) {
             <Input
               placeholder="USERNAME"
               variant="filled"
-              color="white"
+              color="black"
               background="white"
               _placeholder={{ color: "#A465FF" }}
               border="1px"
@@ -80,7 +79,7 @@ function Signup(props) {
             <Input
               placeholder="EMAIL"
               variant="filled"
-              color="white"
+              color="black"
               background="white"
               _placeholder={{ color: "purple.500" }}
               border="1px"
@@ -95,7 +94,7 @@ function Signup(props) {
             <Input
               placeholder="PASSWORD"
               variant="filled"
-              color="white"
+              color="black"
               background="white"
               _placeholder={{ color: "purple.500" }}
               border="1px"
@@ -109,6 +108,9 @@ function Signup(props) {
             />
             <Button bg="#A465FF" color="white" border="1px" variant="solid">
               Sign Up
+            </Button>
+            <Button bg="#A465FF" color="white" variant="solid" type="submit">
+            <Link to="/login">← Go to Login</Link>
             </Button>
           </Flex>
         </Flex>

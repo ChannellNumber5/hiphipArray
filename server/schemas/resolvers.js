@@ -5,31 +5,27 @@ const { signToken } = require("../utils/auth");
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find().populate("skills");
+      return await User.find().populate('skills');
     },
-    user: async (parent, { username }) => {
-      return User.findOne({ username }).populate("skills");
+    user: async (parent, { _id }) => {
+      return User.findById({ _id }).populate("skills");
     },
     skills: async (parent, { skillName }) => {
       const params = skillName ? { skillName } : {};
-      return Skill.find(params).sort({ skillName: 1 });
+      return await Skill.find(params).sort({ skillName: 1 });
     },
     skill: async (parent, { skillId }) => {
-      return Skill.findOne({ _id: skillId });
+      return await Skill.findOne({ _id: skillId });
     },
-    projects: async (parent, { projectName }) => {
-      const params = projectName ? { projectName } : {};
-      return Project.find(params).sort({ projectName: 1 });
+    projects: async () => {
+      return await Project.find().populate('teamLead').populate('neededSkills').populate('teammates');
     },
     project: async (parent, { projectId }) => {
-      return Project.findOne({ _id: projectId });
+      return await Project.findOne({ _id: projectId });
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate(
-          "skills",
-          "projects"
-        );
+        return await User.findOne({ _id: context.user._id }).populate('skills').populate('projects');
       }
       throw new AuthenticationError("You need to be logged in!");
     },
@@ -37,7 +33,6 @@ const resolvers = {
 
   Mutation: {
     addUser: async (parent, { username, email, password }) => {
-      console.log("addUser");
       const user = await User.create({ username, email, password });
       const token = signToken(user);
       return { token, user };

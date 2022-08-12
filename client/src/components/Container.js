@@ -10,8 +10,8 @@ import Profile from "./pages/myProfile";
 import Project from "./pages/myProjects";
 import Search from "./pages/search";
 import Requests from "./pages/requests";
-import ChooseSkills from "./pages/ChooseSkills";
 import CreateProfile from "./pages/CreateProfile";
+import CreateProject from "./pages/CreateProject";
 
 export default function Container() {
   return (
@@ -23,13 +23,13 @@ export default function Container() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/myprofile" element={<Profile />} />
+          <Route path="/createproject" element={<CreateProject />} />
           <Route
             path="/Project" // for user's projects
             element={<Project />}
           />
           <Route path="Search" element={<Search />} />
           <Route path="Requests" element={<Requests />} />
-          <Route path="chooseSkills" element={<ChooseSkills />} />
           <Route path="CreateProfile" element={<CreateProfile />} />
         </Routes>
       </div>

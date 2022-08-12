@@ -47,7 +47,7 @@ export default function RequestBoxes() {
             >
               {" "}
               <Heading as="h3" size="lg" mb="2" color="#652CB3">
-                <Center h="100px">Accept Request</Center>
+                <Center h="100px">Request Accepted!</Center>
               </Heading>
             </Box>
           </Center>

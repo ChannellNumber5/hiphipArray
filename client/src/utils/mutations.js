@@ -6,6 +6,15 @@ export const LOGIN = gql`
             token
             user {
                 _id
+                username
+                skills {
+                    _id
+                    skillName
+                }
+                projects {
+                    _id
+                    projectName
+                }
             }
         }
     }
@@ -23,7 +32,7 @@ export const ADD_USER = gql`
 `;
 
 export const UPDATE_USER = gql`
-    mutation updateUser($username: String!, $email: String!, $password: String!, $description: String!, $skills:[ID], $projects:[ID]) {
+    mutation updateUser($username: String, $email: String, $password: String, $description: String, $skills:[ID], $projects:[ID]) {
         updateUser(username: $username, email: $email, password:$password, description: $description, skills:$skills, projects:$projects) {
             token
             user {
@@ -70,7 +79,7 @@ export const REMOVE_USER_SKILL = gql`
 `;
 
 export const ADD_PROJECT = gql`
-    mutation addProject($projectName: String!, $description: String!, $teamLead: String!) {
+    mutation addProject($projectName: String, $description: String, $teamLead: String) {
         addProject(projectName: $projectName, description: $description, teamLead: $teamLead) {
             projectName
             description

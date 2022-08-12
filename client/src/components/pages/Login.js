@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { LOGIN } from "../../utils/mutations";
 import Auth from "../../utils/auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Button,
   ButtonGroup,
@@ -17,6 +17,7 @@ import {
 import { HamburgerIcon } from "@chakra-ui/icons";
 
 function Login(props) {
+  const navigate = useNavigate();
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error }] = useMutation(LOGIN);
 
@@ -27,7 +28,8 @@ function Login(props) {
         variables: { email: formState.email, password: formState.password },
       });
       const token = mutationResponse.data.login.token;
-      Auth.login(token);
+      Auth.login(token)
+      navigate('/myprofile');
     } catch (e) {
       console.log(e);
     }
@@ -43,7 +45,6 @@ function Login(props) {
 
   return (
     <div className="container my-1">
-      <Link to="/signup">← Go to Signup</Link>
       <form onSubmit={handleFormSubmit}>
         <Flex height="100vh" alignItems="center" justifyContent="center">
           <Flex
@@ -93,8 +94,11 @@ function Login(props) {
             <p className="error-text">The provided credentials are incorrect</p>
           </div>
         ) : null}
-            <Button bg="#A465FF" color="white" border="1px" variant="solid" type="submit">
+            <Button bg="#A465FF" color="white" border="1px" variant="solid" type="submit" marginBottom="5px">
               Login
+            </Button>
+            <Button bg="#A465FF" color="white" border="1px" variant="solid" type="submit">
+            <Link to="/signup">← Go to Signup</Link>
             </Button>
           </Flex>
         </Flex>
