@@ -125,17 +125,8 @@ export default function CreateProfile() {
           </Heading>
           <div>
             <div style={styles.container}>
-              <ButtonGroup style={styles.buttonList} maxW="55%">
+              <ButtonGroup style={styles.buttonList} maxW="100%">
                 <Button
-                  bg="#A465FF"
-                  color="white"
-                  variant="solid"
-                  onClick={handleChange}
-                  value="HTML"
-                  border="3px solid #652CB3"
-                  marginTop=".5em"
-                ></Button>
-                {/* <Button
                   bg="#A465FF"
                   color="white"
                   variant="solid"
@@ -332,7 +323,7 @@ export default function CreateProfile() {
                   marginTop=".5em"
                 >
                   TypeScript
-                </Button> */}
+                </Button>
               </ButtonGroup>
             </div>
 
