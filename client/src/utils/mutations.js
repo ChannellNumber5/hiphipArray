@@ -32,7 +32,7 @@ export const ADD_USER = gql`
 `;
 
 export const UPDATE_USER = gql`
-    mutation updateUser($username: String!, $email: String!, $password: String!, $description: String!, $skills:[ID], $projects:[ID]) {
+    mutation updateUser($username: String, $email: String, $password: String, $description: String, $skills:[ID], $projects:[ID]) {
         updateUser(username: $username, email: $email, password:$password, description: $description, skills:$skills, projects:$projects) {
             token
             user {
