@@ -18,6 +18,10 @@ import {
   flexbox,
 } from "@chakra-ui/react";
 
+import { useQuery, useMutation } from "@apollo/client";
+import { QUERY_ALL_SKILLS } from "../../utils/queries";
+import { ADD_PROJECT } from "../../utils/mutations";
+
 const styles = {
   textareaStyle: {
     border: "2px solid #652CB3",
@@ -38,7 +42,17 @@ const styles = {
 };
 
 export default function CreateProject() {
+  const [projectskills, addSkill] = useState([]);
+
+  const [skillsToAdd, addNeededSkill] = useState([]);
+  const { data, loading, error } = useQuery(QUERY_ALL_SKILLS);
+  const [updateUser] = useMutation(ADD_PROJECT);
   const navigate = useNavigate();
+
+  const handleChange = (event) => {
+    addSkill((oldarray) => [...oldarray, event.target.value]);
+    addNeededSkill((prevarray) => [...prevarray, event.target.id]);
+  };
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -54,6 +68,23 @@ export default function CreateProject() {
       setName(inputValue);
     } else if (inputType === "description") {
       setDescription(inputValue);
+    }
+  };
+
+  const submitSkills = async (event) => {
+    event.preventDefault();
+    console.log(skillsToAdd);
+
+    try {
+      const mutationResponse = await updateUser({
+        variables: {
+          neeededSkills: skillsToAdd,
+        },
+      });
+
+      navigate("/myProjects");
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -95,18 +126,60 @@ export default function CreateProject() {
           <Heading color="#EDDCFF" as="h3" size="lg" marginBottom=".5em">
             What Skills Are You Looking For?
           </Heading>
-          <p>
-            <Button
-              bg="#A465FF"
-              color="white"
-              variant="solid"
-              border="3px solid #652CB3"
-            >
-              <Heading as="h5" size="lg">
-                Create Project
-              </Heading>
-            </Button>
-          </p>
+          <div>
+            <div style={styles.container}>
+              <ButtonGroup style={styles.buttonList} maxW="100%">
+                {data !== " " &&
+                  data?.skills.map((neededSkill) => {
+                    return (
+                      <Button
+                        bg="#A465FF"
+                        color="white"
+                        variant="solid"
+                        onClick={handleChange}
+                        key={neededSkill._id}
+                        id={neededSkill._id}
+                        value={neededSkill.skillName}
+                        border="3px solid #652CB3"
+                        marginTop=".5em"
+                      >
+                        {neededSkill.skillName}
+                      </Button>
+                    );
+                  })}
+              </ButtonGroup>
+            </div>
+
+            <div style={styles.userList} className="projectskills">
+              {projectskills.map((neededSkill) => {
+                return (
+                  <Tag
+                    bg="#A465FF"
+                    color="white"
+                    border="3px solid #652CB3"
+                    marginTop=".5em"
+                    marginRight=".5em"
+                    key={neededSkill._id}
+                  >
+                    <TagLabel key={neededSkill._id}>{neededSkill}</TagLabel>
+                    <TagCloseButton></TagCloseButton>
+                  </Tag>
+                );
+              })}
+            </div>
+            <p>
+              <Button
+                bg="#A465FF"
+                color="white"
+                variant="solid"
+                border="3px solid #652CB3"
+              >
+                <Heading as="h5" size="lg">
+                  Create Project
+                </Heading>
+              </Button>
+            </p>
+          </div>
         </Container>
       </div>
     </div>
