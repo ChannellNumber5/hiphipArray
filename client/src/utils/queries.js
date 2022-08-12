@@ -57,6 +57,27 @@ export const QUERY_ALL_SKILLS = gql`
   }
 `;
 
+export const QUERY_SKILLS_AND_USER = gql`
+    {
+        skills {
+            _id
+            skillName
+            description
+            users {
+                _id
+                username
+            }
+        }
+
+         me {
+            skills {
+            _id
+            skillName
+            }
+        }
+    }
+`;
+
 export const QUERY_USERS_BY_SKILLS = gql`
   query getUsersBySkill($skill: ID) {
     skills(_id: $skill) {

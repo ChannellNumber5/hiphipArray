@@ -10,7 +10,6 @@ import Profile from "./pages/myProfile";
 import Project from "./pages/myProjects";
 import Search from "./pages/search";
 import Requests from "./pages/requests";
-import ChooseSkills from "./pages/ChooseSkills";
 import CreateProfile from "./pages/CreateProfile";
 
 export default function Container() {
@@ -29,7 +28,6 @@ export default function Container() {
           />
           <Route path="Search" element={<Search />} />
           <Route path="Requests" element={<Requests />} />
-          <Route path="chooseSkills" element={<ChooseSkills />} />
           <Route path="CreateProfile" element={<CreateProfile />} />
         </Routes>
       </div>
