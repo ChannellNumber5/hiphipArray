@@ -17,9 +17,8 @@ const resolvers = {
     skill: async (parent, { skillId }) => {
       return await Skill.findOne({ _id: skillId });
     },
-    projects: async (parent, { projectName }) => {
-      const params = projectName ? { projectName } : {};
-      return await Project.find(params).sort({ projectName: 1 });
+    projects: async () => {
+      return await Project.find().populate('teamLead').populate('neededSkills').populate('teammates');
     },
     project: async (parent, { projectId }) => {
       return await Project.findOne({ _id: projectId });

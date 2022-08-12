@@ -74,7 +74,10 @@ export const QUERY_PROJECTS = gql`
       _id
       projectName
       description
-      teamLead
+      teamLead {
+        _id
+        username
+      }
       neededSkills {
         _id
         skillName
