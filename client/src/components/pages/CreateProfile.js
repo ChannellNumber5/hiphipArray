@@ -167,7 +167,6 @@ export default function CreateProfile() {
                   >{skill.skillName}</Button>
                   )
                 })}
-
               </ButtonGroup>
             </div>
 
