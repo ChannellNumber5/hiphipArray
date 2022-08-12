@@ -1,9 +1,12 @@
 import React from "react";
+import RequestBoxes from "../RequestBoxes";
 
 export default function Requests() {
   return (
     <div>
-      <h1>Requests</h1>
+      <RequestBoxes></RequestBoxes>
+      <RequestBoxes></RequestBoxes>
+      <RequestBoxes></RequestBoxes>
     </div>
   );
 }
