@@ -65,6 +65,41 @@ const ToggleBar = ({ users }) => {
           </Tab>
         </TabList>
         <TabPanels>
+        <TabPanel>
+            {projects &&
+              projects.map((project) => (
+                <Container maxW="1000px" key={user._id}>
+                  <div style={styles.container}>
+                    <Box style={styles.imageHolder}>
+                      <img src={imageplaceholder} />
+                    </Box>
+                    <Box
+                      style={styles.nameContainer}
+                      borderWidth="1px"
+                      borderRadius="lg"
+                      overflow="hidden"
+                    >
+                      <Box display="flex" alignItems="baseline"></Box>
+
+                      <Box p="6">
+                        <Box display="flex" alignItems="baseline">
+                          <Box
+                            color="purple"
+                            fontWeight="semibold"
+                            letterSpacing="wide"
+                            fontSize="m"
+                            ml="2"
+                            mb="4"
+                          >
+                            <Heading color="#652CB3">{project.projectName}</Heading>
+                          </Box>
+                        </Box>
+                      </Box>
+                    </Box>
+                  </div>
+                </Container>
+              ))}
+          </TabPanel>
           <TabPanel>
             {/* Make This An Array */}
             <Card></Card>

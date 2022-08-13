@@ -29,6 +29,12 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
+    // usersAndProjects: async () => {
+    //   const users = await User.find().populate('skills');
+    //   const projects = await Project.find().populate('teamLead').populate('neededSkills').populate('teammates')
+      
+    //   return {users, projects};
+    // }
   },
 
   Mutation: {

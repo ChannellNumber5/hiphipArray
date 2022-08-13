@@ -89,6 +89,43 @@ export const QUERY_USERS_BY_SKILLS = gql`
   }
 `;
 
+
+export const QUERY_USERS_AND_PROJECTS = gql`
+  {
+    projects {
+      _id
+      projectName
+      description
+      teamLead {
+        _id
+        username
+      }
+      neededSkills {
+        _id
+        skillName
+      }
+      teammates {
+        _id
+        username
+        skills {
+          _id
+          skillName
+        }
+      }
+    }
+    
+    users {
+      _id
+      username
+      description
+      skills {
+        _id
+        skillName
+      }
+    }
+  }
+`;
+
 export const QUERY_PROJECTS = gql`
   {
     projects {
@@ -99,6 +136,28 @@ export const QUERY_PROJECTS = gql`
         _id
         username
       }
+      neededSkills {
+        _id
+        skillName
+      }
+      teammates {
+        _id
+        username
+        skills {
+          _id
+          skillName
+        }
+      }
+    }
+  }
+`;
+
+export const QUERY_USER_AND_PROJECTS = gql`
+  query getUserProjects($userId: ID!) {
+    project(teamLead: $userId) {
+      _id
+      projectName
+      description
       neededSkills {
         _id
         skillName
