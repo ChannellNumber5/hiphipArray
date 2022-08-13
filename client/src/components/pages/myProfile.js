@@ -99,7 +99,7 @@ export default function Profile() {
                 ml="2"
                 mb="4"
               >
-                <Heading color="#652CB3">{user.username}</Heading>
+                <Heading color="#652CB3">{user?.username}</Heading>
               </Box>
             </Box>
 
@@ -107,16 +107,16 @@ export default function Profile() {
               <Heading color="#652CB3" as="h3" size="lg" mb="2">
                 My Skills
               </Heading> 
-              {user != '' && user.skills.map((skill) => {
+              {user != null && user.skills.map((skill) => {
                 return(
                 <Tag
                   bg="#A465FF"
                   color="white"
                   border="3px solid #652CB3"
                   marginRight=".5em"
-                  key = {skill._id}
+                  key = {skill?._id}
                 >
-                  <TagLabel>{skill.skillName}</TagLabel>
+                  <TagLabel>{skill?.skillName}</TagLabel>
                 </Tag>
               )
               })}
