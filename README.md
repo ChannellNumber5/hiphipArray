@@ -55,26 +55,35 @@ This is an application built with the following technologies:
 
 ![Log in](/client/src/assets/Login.png)
 
-### New User Profile Page
+### Create Profile
 
-![New User Profile Page](/assets/images/4_logged_in.png)
+![User Profile Creation](/client/src/assets/CreateProfile.png)
 
-### Create a post
+### Sample Profile
 
-![Create a post](/assets/images/5_create_post.png)
+![Sample Profile](/client/src/assets/SampleProfile.png)
 
-### View new post on profile
+### Create Project
 
-![View new post on profile](/assets/images/6_New_post.png)
+![Create Project](/client/src/assets/CreateProject.png)
 
-### View all posts
+### No Projects Page and Sidebar
 
-![View all posts](/assets/images/8_Home_View_All_Posts.png)
+![No Projects and Sidebar](/client/src/assets/NoProjectsAndSidebar.png)
+
+### FindArrayers
+
+![Find Arrayers](/client/src/assets/FindArrayers.png)
+
+### Requests
+
+![Requests](/client/src/assets/Requests.png)
 
 ---
 
 ## Contribute
-We are open to suggestions if there are ways to streamline the code or if any bugs are found.
+
+We are open to suggestions to improve our code and appreciate feedback.
 
 ---
 
