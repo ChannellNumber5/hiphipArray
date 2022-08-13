@@ -8,10 +8,7 @@ import { Heading } from "@chakra-ui/react";
 import {
   Tag,
   TagLabel,
-  TagLeftIcon,
-  TagRightIcon,
-  TagCloseButton,
-  flexbox,
+  Button
 } from "@chakra-ui/react";
 import { Container } from "@chakra-ui/react";
 import imageplaceholder from "../../assets/imageplaceholder.png";
@@ -59,7 +56,18 @@ export default function Profile() {
         <Heading color="#652CB3">My Profile</Heading>
         <div style={styles.container}>
           <Box style={styles.imageHolder}>
-            <img src={imageplaceholder} />
+            <img src={imageplaceholder} width="100%" />
+            <Button
+                bg="#A465FF"
+                color="white"
+                variant="solid"
+                border="3px solid #652CB3"
+                type="submit"
+              >
+                <Heading as="h5" size="lg" width="100%">
+                  <Link to="/CreateProfile">Update Profile</Link>
+                </Heading>
+              </Button>
           </Box>
           <Box
             style={styles.nameContainer}
@@ -112,14 +120,6 @@ export default function Profile() {
                 </Tag>
               )
               })}
-              {/* <Tag
-                bg="#A465FF"
-                color="white"
-                border="3px solid #652CB3"
-                marginRight=".5em"
-              >
-                <TagLabel>Sample Skill</TagLabel>
-              </Tag> */}
             </Box>
           </Box>
           }
