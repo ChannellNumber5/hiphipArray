@@ -32,9 +32,13 @@ const styles = {
   },
 };
 
-const ToggleBar = ({ users }) => {
+const ToggleBar = ({ users, projects }) => {
   if (!users.length) {
     return <h3>No Arrayers Yet</h3>;
+  }
+
+  if (!projects.length) {
+    return <h3>No Projects Yet</h3>;
   }
 
   return (
@@ -65,17 +69,59 @@ const ToggleBar = ({ users }) => {
           </Tab>
         </TabList>
         <TabPanels>
-          <TabPanel>
-            {/* Make This An Array */}
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            {/* Make This An Array */}
+        <TabPanel>
+            {projects &&
+              projects.map((project) => (
+                <Container maxW="1000px" key={project._id}>
+                  <div style={styles.container}>
+                    <Box style={styles.imageHolder}>
+                      <img src={imageplaceholder} />
+                    </Box>
+                    <Box
+                      style={styles.nameContainer}
+                      borderWidth="1px"
+                      borderRadius="lg"
+                      overflow="hidden"
+                    >
+                      <Box display="flex" alignItems="baseline"></Box>
+
+                      <Box p="6">
+                        <Box display="flex" alignItems="baseline">
+                          <Box
+                            color="purple"
+                            fontWeight="semibold"
+                            letterSpacing="wide"
+                            fontSize="m"
+                            ml="2"
+                            mb="4"
+                          >
+                            <Heading color="#652CB3">{project.projectName}</Heading>
+                          </Box>
+                        </Box>
+                        <Box as="h3" size="lg" ml="2">
+                          <Heading color="#652CB3" as="h3" size="lg" mb="2">
+                            Needed Skills
+                          </Heading>
+                          {project != "" &&
+                            project.neededSkills.map((skill) => {
+                              return (
+                                <Tag
+                                  bg="#A465FF"
+                                  color="white"
+                                  border="3px solid #652CB3"
+                                  marginRight=".5em"
+                                  key={skill._id}
+                                >
+                                  <TagLabel>{skill.skillName}</TagLabel>
+                                </Tag>
+                              );
+                            })}
+                        </Box>
+                      </Box>
+                    </Box>
+                  </div>
+                </Container>
+              ))}
           </TabPanel>
 
           <TabPanel>

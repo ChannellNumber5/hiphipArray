@@ -2,13 +2,15 @@ import React from "react";
 // Components
 import ToggleBar from "../ToggleBar";
 import {useQuery} from "@apollo/client"
-import {QUERY_USERS} from "../../utils/queries"
+import {QUERY_PROJECTS, QUERY_USERS, QUERY_USERS_AND_PROJECTS} from "../../utils/queries"
 
 function Search() {
-  const { loading, data } = useQuery(QUERY_USERS);
+  const { loading, data } = useQuery(QUERY_USERS_AND_PROJECTS);
+
   const users = data?.users || [];
-  console.log(data)
-  // console.log(users)
+  const projects = data?.projects || [];
+  console.log(users, projects);
+
   return (
     // This will need to be a map eventually
     <div>
@@ -17,6 +19,7 @@ function Search() {
           ) : (
             <ToggleBar
               users={users}
+              projects={projects}
             />
           )}
     </div>
