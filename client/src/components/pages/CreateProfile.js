@@ -46,7 +46,8 @@ const styles = {
 
 export default function CreateProfile() {
   const [userskills, addSkill] = useState([]);
-
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
   const [skillsToAdd, addUserSkill] = useState([]);
   const {data, loading, error } = useQuery(QUERY_SKILLS_AND_USER);
   const [updateUser] = useMutation(UPDATE_USER);
@@ -57,8 +58,7 @@ export default function CreateProfile() {
     addUserSkill((prevarray) => [...prevarray, event.target.id]);
   };
 
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
+
 
   const handleInputChange = (e) => {
     // Getting the value and name of the input which triggered the change
@@ -73,6 +73,7 @@ export default function CreateProfile() {
       setDescription(inputValue);
     }
   };
+  console.log (data)
 
   const submitSkills = async (event) => {
     event.preventDefault();
@@ -81,7 +82,9 @@ export default function CreateProfile() {
     try {
       const mutationResponse = await updateUser({
         variables: {
-          skills: skillsToAdd
+          skills: skillsToAdd,
+          username: name,
+          description: description
         }
       });
       
@@ -104,26 +107,29 @@ export default function CreateProfile() {
         </Heading>
         <FormControl>
           <FormLabel> Name: </FormLabel>
-          <input
-            value={name}
+          <textarea
+            // value={name}
             style={styles.textareaStyle}
             name="name"
             onChange={handleInputChange}
             type="text"
-            placeholder="name"
+            // placeholder="name"
             id="userform"
-          />
+          >{data !== " " && data?.me.username}</textarea>
         </FormControl>
         <FormControl marginBottom=".9em">
           <FormLabel> Description: </FormLabel>
           <textarea
-            name="comment"
+          // value={description}
+            name="description"
             style={styles.textareaStyle}
+            onChange={handleInputChange}
             rows="5"
             cols="40"
             form="usrform"
+            // placeholder="enter description"
           >
-            Enter text here...
+            {data !== " " && data?.me.description}
           </textarea>
         </FormControl>
         {/* <p>

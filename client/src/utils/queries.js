@@ -70,6 +70,8 @@ export const QUERY_SKILLS_AND_USER = gql`
         }
 
          me {
+          username
+          description
             skills {
             _id
             skillName
