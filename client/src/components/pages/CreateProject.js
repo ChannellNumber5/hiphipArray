@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Auth from "../../utils/auth"
+
 import {
   FormControl,
   FormLabel,
@@ -42,11 +44,15 @@ const styles = {
 };
 
 export default function CreateProject() {
+
+  const user = Auth.getProfile();
+  // console.log(user);
+
   const [projectskills, addSkill] = useState([]);
 
   const [skillsToAdd, addNeededSkill] = useState([]);
   const { data, loading, error } = useQuery(QUERY_ALL_SKILLS);
-  const [updateUser] = useMutation(ADD_PROJECT);
+  const [addProject] = useMutation(ADD_PROJECT);
   const navigate = useNavigate();
 
   const handleChange = (event) => {
@@ -56,6 +62,7 @@ export default function CreateProject() {
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [teamLead, setTeamLead] = useState("");
 
   const handleInputChange = (e) => {
     // Getting the value and name of the input which triggered the change
@@ -71,14 +78,18 @@ export default function CreateProject() {
     }
   };
 
-  const submitSkills = async (event) => {
+  const submitProject = async (event) => {
     event.preventDefault();
     console.log(skillsToAdd);
+    setTeamLead(user._id);
 
     try {
-      const mutationResponse = await updateUser({
+      const mutationResponse = await addProject({
         variables: {
-          neeededSkills: skillsToAdd,
+          projectName: name,
+          description: description,
+          teamLead: teamLead,
+          neededSkills: projectskills,
         },
       });
 
@@ -174,6 +185,7 @@ export default function CreateProject() {
                 variant="solid"
                 border="3px solid #652CB3"
                 type="submit"
+                onClick={submitProject}
               >
                 <Heading as="h5" size="lg">
                   <Link to="/project">Create Project</Link>

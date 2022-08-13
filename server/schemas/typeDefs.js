@@ -66,6 +66,7 @@ const typeDefs = gql`
       projectName: String!
       description: String!
       teamLead: ID!
+      neededSkills: [ID]
     ): Project
 
     removeProject(projectId: ID!): Project

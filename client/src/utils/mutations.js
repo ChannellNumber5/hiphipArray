@@ -79,14 +79,14 @@ export const REMOVE_USER_SKILL = gql`
 `;
 
 export const ADD_PROJECT = gql`
-    mutation addProject($projectName: String, $description: String, $teamLead: String) {
-        addProject(projectName: $projectName, description: $description, teamLead: $teamLead) {
+    mutation addProject($projectName: String, $description: String, $teamLead: ID, $neededSKills:[ID]) {
+        addProject(projectName: $projectName, description: $description, teamLead: $teamLead, neededSkills: $neededSkills) {
             projectName
             description
             teamLead {
                 _id
             }
-            skills {
+            neededSkills {
                 skillName
                 description
             }
