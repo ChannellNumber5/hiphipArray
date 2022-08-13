@@ -4,7 +4,7 @@ import { Box } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import Auth from "../utils/auth"
+import Auth from "../utils/auth";
 
 export default function NavTabs() {
   return (
@@ -34,7 +34,13 @@ export default function NavTabs() {
                 <Link to="/myprofile">My Profile</Link>
               </MenuItem>
               <MenuItem>
+                <Link to="/project">My Projects</Link>
+              </MenuItem>
+              <MenuItem>
                 <Link to="/CreateProfile">Create Profile</Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to="/CreateProject">Create Project</Link>
               </MenuItem>
               <MenuItem>
                 <Link to="/Search">Search</Link>

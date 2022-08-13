@@ -37,6 +37,46 @@ db.once('open', async () => {
         {
             skillName:'Angular',
             description:'client side rendering application/language for UI'
+        },
+        {
+            skillName:'Swift',
+            description:'general-purpose, multi-paradigm, compiled programming language'
+        },
+        {
+            skillName:'GO',
+            description:'statically typed, compiled programming language'
+        },
+        {
+            skillName:'MongoDB',
+            description:'MongoDB is a source-available cross-platform document-oriented database program. Classified as a NoSQL database program, MongoDB uses JSON-like documents with optional schemas.'
+        },
+        {
+            skillName:'Ruby',
+            description:'Ruby is an interpreted, high-level, general-purpose programming language which supports multiple programming paradigms'
+        },
+        {
+            skillName:'TypeScript',
+            description:'strict syntactical superset of JavaScript and adds optional static typing to the language'
+        },
+        {
+            skillName:'C++',
+            description:'C++ is a general-purpose programming language'
+        },
+        {
+            skillName:'Jira',
+            description:' Jira is a proprietary issue tracking product that allows bug tracking and agile project management'
+        },
+        {
+            skillName:'PHP',
+            description:' PHP is a general-purpose scripting language geared toward web development.'
+        },
+        {
+            skillName:'Java',
+            description:'Java is a high-level, class-based, object-oriented programming language that is designed to have as few implementation dependencies as possible. It is a general-purpose programming language intended to let programmers write once, run anywhere.'
+        },
+        {
+            skillName:'C#',
+            description:'C# is a general-purpose, multi-paradigm programming language. C# encompasses static typing, strong typing, lexically scoped, imperative, declarative, functional, generic, object-oriented, and component-oriented programming disciplines'
         }
     ]);
 

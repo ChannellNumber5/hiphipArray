@@ -151,7 +151,7 @@ export default function CreateProfile() {
           </Heading>
           <div>
             <div style={styles.container}>
-              <ButtonGroup style={styles.buttonList} maxW="55%">
+              <ButtonGroup style={styles.buttonList} maxW="100%">
                 {data !== " " && data?.skills.map((skill) => {
                   return (
                     <Button

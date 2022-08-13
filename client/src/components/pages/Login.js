@@ -45,7 +45,6 @@ function Login(props) {
 
   return (
     <div className="container my-1">
-      <Link to="/signup">← Go to Signup</Link>
       <form onSubmit={handleFormSubmit}>
         <Flex height="100vh" alignItems="center" justifyContent="center">
           <Flex
@@ -95,8 +94,11 @@ function Login(props) {
             <p className="error-text">The provided credentials are incorrect</p>
           </div>
         ) : null}
-            <Button bg="#A465FF" color="white" border="1px" variant="solid" type="submit">
+            <Button bg="#A465FF" color="white" border="1px" variant="solid" type="submit" marginBottom="5px">
               Login
+            </Button>
+            <Button bg="#A465FF" color="white" border="1px" variant="solid" type="submit">
+            <Link to="/signup">← Go to Signup</Link>
             </Button>
           </Flex>
         </Flex>
