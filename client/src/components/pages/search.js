@@ -9,9 +9,8 @@ function Search() {
 
   const users = data?.users || [];
   const projects = data?.projects || [];
-  console.log(loadedData)
+  console.log(users, projects);
 
-  // console.log(users)
   return (
     // This will need to be a map eventually
     <div>
