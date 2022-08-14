@@ -107,7 +107,7 @@ export default function Profile() {
               <Heading color="#652CB3" as="h3" size="lg" mb="2">
                 My Skills
               </Heading> 
-              {user != null && user.skills.map((skill) => {
+              {user != " " && user.skills.map((skill) => {
                 return(
                 <Tag
                   bg="#A465FF"
